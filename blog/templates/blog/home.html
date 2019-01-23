@@ -3,6 +3,7 @@
 
 {% block content %}
     {% for post in posts %}
+    <!-- <img class="rounded-circle" src="{{post.author.profile.image.url}}"> -->
     <h1>{{post.title}}</h1>
     <p>By {{post.author}} on {{post.date_posted|date:"F d, Y"}}</p>
     <p>{{post.content}}</p>
