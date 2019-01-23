@@ -4,7 +4,7 @@
 {% block content %}
     {% for post in posts %}
     <!-- <img class="rounded-circle" src="{{post.author.profile.image.url}}"> -->
-    <h1>{{post.title}}</h1>
+    <a href="{% url 'post-detail' post.id %}"><h5>{{post.title}}</h5></a>
     <p>By {{post.author}} on {{post.date_posted|date:"F d, Y"}}</p>
     <p>{{post.content}}</p>
     <hr width="50%" style="margin-left:0px;">

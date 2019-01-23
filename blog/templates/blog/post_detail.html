@@ -1,0 +1,10 @@
+
+{% extends 'blog/base.html' %}
+
+{% block content %}
+    <!-- <img class="rounded-circle" src="{{post.author.profile.image.url}}"> -->
+    <h2>{{object.title}}</h2>
+    <p>By {{object.author}} on {{object.date_posted|date:"F d, Y"}}</p>
+    <p>{{object.content}}</p>
+    <hr width="50%" style="margin-left:0px;">
+{% endblock content %}
