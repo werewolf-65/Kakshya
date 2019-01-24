@@ -5,6 +5,12 @@
     <!-- <img class="rounded-circle" src="{{post.author.profile.image.url}}"> -->
     <h2>{{object.title}}</h2>
     <p>By {{object.author}} on {{object.date_posted|date:"F d, Y"}}</p>
+    {% if object.author == user %}
+    <div>
+    <a href="{% url 'post-update' object.id %}" class="btn btn-secondary btn-sm">Update</a>
+    <a href="{% url 'post-delete' object.id %}" class="btn btn-danger btn-sm">Delete</a>
+    </div>
+    {% endif %}
     <p>{{object.content}}</p>
     <hr width="50%" style="margin-left:0px;">
 {% endblock content %}
