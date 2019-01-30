@@ -4,7 +4,7 @@
 {% block content %}
     <!-- <img class="rounded-circle" src="{{post.author.profile.image.url}}"> -->
     <h2>{{object.title}}</h2>
-    <p>By {{object.author}} on {{object.date_posted|date:"F d, Y"}}</p>
+    <p>By <a href="{% url 'user-posts' object.author.username %}" >{{object.author}}</a> on {{object.date_posted|date:"F d, Y"}}</p>
     {% if object.author == user %}
     <div>
     <a href="{% url 'post-update' object.id %}" class="btn btn-secondary btn-sm">Update</a>
