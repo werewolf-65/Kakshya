@@ -1,6 +1,7 @@
 from django.shortcuts import render,get_object_or_404
 from django.http import HttpResponse
 from django.contrib.auth.models import User
+from django.contrib import messages
 from .models import Post
 from django.contrib.auth.mixins import LoginRequiredMixin,UserPassesTestMixin
 from django.views.generic import (
@@ -46,6 +47,7 @@ class PostCreateView(LoginRequiredMixin,CreateView):
 
     def form_valid(self,form):
         form.instance.author=self.request.user
+        messages.success(self.request,f'You have created a new post!')
         return super().form_valid(form)
 
 class PostUpdateView(LoginRequiredMixin,UserPassesTestMixin,UpdateView):
@@ -54,6 +56,7 @@ class PostUpdateView(LoginRequiredMixin,UserPassesTestMixin,UpdateView):
 
     def form_valid(self,form):
         form.instance.author=self.request.user
+        messages.success(self.request,f'You have edited your post!')
         return super().form_valid(form)
 
     def test_func(self):
