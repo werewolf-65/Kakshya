@@ -1,0 +1,37 @@
+{% extends 'blog/base.html' %}
+{% block content %}
+    <h1>Book list</h1>
+    <p>
+<a href="{% url 'upload_book' %}" class="btn btn-primary btn-small">Upload book</a>
+    </p>
+    <table class="table">
+      <thead>
+        <tr>
+          <td>Cover</td>
+          <td>Title</td>
+          <td>Author</td>
+          <td>Download</td>
+        </tr>
+      </thead>
+      <tbody>
+        {% for book in books %}
+        <tr>
+          <td>
+            {% if book.cover %}
+            <img src="{{ book.cover.url }}" alt="{{ book.title}}" style="width:50px;">
+            {% else %}
+            <span class="text-muted">No Cover</span>
+            {% endif %}
+          <td>{{ book.title }}</td>
+          <td>{{ book.author }}</td>
+          <td>
+          <a href="{{book.pdf.url}}" class="btn btn-primary btn-small" target="_blank" rel="noopener noreferrer">
+          Download PDF
+          </a>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+
+{% endblock %}

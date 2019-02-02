@@ -36,12 +36,12 @@
         <li class="nav-item">
           <a class="nav-link" href="https://github.com/TeamKakshya" target="_blank" rel="noopener noreferrer">Github</a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'book_list' %}">Library</a>
+        </li>
         {% if user.is_authenticated %}
         <li class="nav-item">
           <a class="nav-link" href="{% url 'post-create' %}">Create Post</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="{% url 'library-upload' %}">Library</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="{% url 'profile' %}">Profile</a>

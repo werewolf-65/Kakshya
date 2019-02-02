@@ -37,7 +37,9 @@ urlpatterns = [
          auth_views.PasswordResetConfirmView.as_view(template_name="users/password_reset_confirm.html"),
          name='password_reset_confirm'),
     path('profile/',users_views.profile,name='profile'),
-    path('library-upload/',library_views.upload,name="library-upload")
+    path('library/library-upload/',library_views.upload,name="library-upload"),
+    path('library/books/',library_views.book_list,name="book_list"),
+    path('library/books/upload',library_views.upload_book,name="upload_book")
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
