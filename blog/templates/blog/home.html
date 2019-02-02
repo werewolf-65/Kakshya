@@ -7,6 +7,10 @@
     <a href="{% url 'post-detail' post.id %}" ><h5>{{post.title}}</h5></a>
     <p>By <a href="{% url 'user-posts' post.author.username %}" >{{post.author}}</a> on {{post.date_posted|date:"F d, Y"}}</p>
     <p>{{post.content}}</p>
+    {% if post.img %}
+    <img src="{{ post.img.url }}" alt="{{ post.title }}"  style="width:300px;">
+    {% else %}
+    {% endif %}
     <hr width="50%" style="margin-left:0px;">
     {% endfor %}
     {% if is_paginated %}
