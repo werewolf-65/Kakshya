@@ -17,3 +17,12 @@ class Post(models.Model):
         return reverse('blog-home')
     #    return reverse('post-detail',kwargs={'pk':self.pk})
         #returns the full path as a string
+
+class Comment(models.Model):
+    post=models.ForeignKey(Post,on_delete=models.CASCADE)
+    user=models.ForeignKey(User,on_delete=models.CASCADE)
+    content=models.TextField(max_length=100)
+    timestamp=models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return "{}-{}".format(self.post.title,self.user.username)

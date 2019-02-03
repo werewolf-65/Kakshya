@@ -12,5 +12,9 @@
     </div>
     {% endif %}
     <p>{{object.content}}</p>
+    {% if object.img %}
+    <img src="{{ object.img.url }}" alt="{{ object.title }}"  style="width:400px;">
+    {% else %}
+    {% endif %}
     <hr width="50%" style="margin-left:0px;">
 {% endblock content %}
