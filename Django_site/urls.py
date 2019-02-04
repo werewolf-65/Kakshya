@@ -18,6 +18,7 @@ from django.contrib.auth import views as auth_views
 from django.urls import path,include
 from users import views as users_views
 from library import views as library_views
+from projects import views as pro_views
 from django.conf import settings
 from django.conf.urls.static import static
 
@@ -40,7 +41,10 @@ urlpatterns = [
     path('profile/',users_views.profile,name='profile'),
     path('library/library-upload/',library_views.upload,name="library-upload"),
     path('library/books/',library_views.book_list,name="book_list"),
-    path('library/books/upload',library_views.upload_book,name="upload_book")
+    path('library/books/upload',library_views.upload_book,name="upload_book"),
+    path('projects/',pro_views.project_list,name="project_list"),
+    path('projects/upload',pro_views.upload_project,name="upload_project"),
+    path('project/star',pro_views.star_project,name='star_project'),
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)

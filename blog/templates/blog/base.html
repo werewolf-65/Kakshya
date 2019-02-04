@@ -36,6 +36,9 @@
         <li class="nav-item">
           <a class="nav-link" href="{% url 'book_list' %}">Library</a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'project_list' %}">Projects</a>
+        </li>
         {% if user.is_authenticated %}
         <li class="nav-item">
           <a class="nav-link" href="{% url 'post-create' %}">Create Post</a>
