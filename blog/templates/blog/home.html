@@ -2,6 +2,7 @@
 {% extends 'blog/base.html' %}
 
 {% block content %}
+<div class="container">
     {% for post in posts %}
     <!-- <img class="rounded-circle" src="{{post.author.profile.image.url}}"> -->
     <a href="{% url 'post-detail' post.id %}" ><h5>{{post.title}}</h5></a>
@@ -33,4 +34,5 @@
       {% endif %}
 
     {% endif %}
+</div>
 {% endblock content %}

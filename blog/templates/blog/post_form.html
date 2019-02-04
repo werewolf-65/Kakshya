@@ -1,6 +1,7 @@
 {% extends 'blog/base.html' %}
 {% load crispy_forms_tags %}
 {% block content %}
+<div class="container">
 <div class="content-section">
   <form method="POST" enctype="multipart/form-data">
     {% csrf_token %}
@@ -10,5 +11,6 @@
     </fieldset>
     <button type="submit" class="btn btn-outline-info">Post</button>
   </form>
+</div>
 </div>
 {% endblock %}

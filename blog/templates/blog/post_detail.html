@@ -2,6 +2,7 @@
 {% extends 'blog/base.html' %}
 
 {% block content %}
+<div class="container">
     <!-- <img class="rounded-circle" src="{{post.author.profile.image.url}}"> -->
     <h2>{{object.title}}</h2>
     <p>By <a href="{% url 'user-posts' object.author.username %}" >{{object.author}}</a> on {{object.date_posted|date:"F d, Y"}}</p>
@@ -18,4 +19,5 @@
     {% endif %}
     <p>{{ comments.content }}</p>
     <hr width="50%" style="margin-left:0px;">
+</div>
 {% endblock content %}

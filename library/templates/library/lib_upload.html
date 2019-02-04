@@ -1,5 +1,6 @@
 {% extends 'blog/base.html' %}
 {% block content %}
+<div class="container">
     <h1>Kakshya Library</h1>
     <form method="post" enctype="multipart/form-data">
       {% csrf_token %}
@@ -9,4 +10,5 @@
     {% if url %}
     <p>Uploaded file: <a href={{url}}>{{url}}</a></p>
     {% endif %}
+</div>
 {% endblock %}
