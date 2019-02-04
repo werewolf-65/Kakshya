@@ -1,0 +1,62 @@
+{% extends 'blog/base.html' %}
+{% block content %}
+<div class="container">
+    <h1>Projects list</h1>
+    <p>
+<a href="{% url 'upload_project' %}" class="btn btn-primary btn-small">Upload your project</a>
+    </p>
+    <table class="table">
+      <thead>
+        <tr>
+          <td>Cover</td>
+          <td>Title</td>
+          <td>Description</td>
+          <td>Members</td>
+          <td>Documentation</td>
+          <td>Stars From:</td>
+        </tr>
+      </thead>
+      <tbody>
+        {% for project in projects %}
+        <tr>
+          <td>
+            {% if project.cover %}
+            <img src="{{ project.cover.url }}" alt="{{ project.title}}" style="width:50px;">
+            {% else %}
+            <span class="text-muted">No Cover</span>
+            {% endif %}
+          <td>{{ project.title }}</td>
+          <td>{{ project.description }}</td>
+          <td>
+            {% for member in project.members.all %}
+            <ul>
+              {{ member.username }}
+            </ul>
+            {% endfor %}
+          </td>
+          <td>
+          <a href="{{project.doc.url}}" class="btn btn-primary btn-small" target="_blank" rel="noopener noreferrer">
+          View Docs
+          </a>
+          </td>
+          <td>
+
+
+          {% for starrer in project.stars.all %}
+          <ul>
+            {{ starrer.username }}
+          </ul>
+          {% endfor %}
+        </td>
+        <td>
+          <form action="{% url 'star_project' %}" method="post">
+            {% csrf_token %}
+            <button type="submit" name="post_id" value="{{ project.id }}" class="btn btn-warning btn-small">Star</button>
+            </form>
+        </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+</div>
+{% endblock %}

@@ -9,7 +9,9 @@
     <p>By <a href="{% url 'user-posts' post.author.username %}" >{{post.author}}</a> on {{post.date_posted|date:"F d, Y"}}</p>
     <p>{{post.content}}</p>
     {% if post.img %}
+    <a href="{% url 'post-detail' post.id %}" >
     <img src="{{ post.img.url }}" alt="{{ post.title }}"  style="width:400px;">
+    </a>
     {% else %}
     {% endif %}
     <hr width="50%" style="margin-left:0px;">

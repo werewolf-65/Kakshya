@@ -14,6 +14,7 @@ from django.views.generic import (
             DeleteView,
             )
 from django.core.paginator import Paginator
+from django.urls import reverse
 # Create your views here.
 def home(request):
     context={'posts':Post.objects.all()}
@@ -101,7 +102,8 @@ def post_detail(request,pk):
             content=request.POST.get('content')
             comment=Comment.objects.create(post=post,user=request.user,content=content)
             comment.save()
-            return HttpResponseRedirect(post.get_absolute_url())
+            #return HttpResponseRedirect(post.get_absolute_url())
+            return HttpResponseRedirect(reverse('post-detail', args=(pk, )))
     else:
         comment_form=CommentForm()
     context={
@@ -113,7 +115,8 @@ def post_detail(request,pk):
     }
     return render(request,'blog/post_detail.html',context)
 def upvote_post(request):
-    post=get_object_or_404(Post,id=request.POST.get('post_id'))
+    pk=request.POST.get('post_id')
+    post=get_object_or_404(Post,id=pk)
     is_upvoted=False
     if post.upvotes.filter(id=request.user.id).exists():
         post.upvotes.remove(request.user)
@@ -121,4 +124,4 @@ def upvote_post(request):
     else:
         post.upvotes.add(request.user)
         is_upvoted=True
-    return HttpResponseRedirect(post.get_absolute_url())
+    return HttpResponseRedirect(reverse('post-detail', args=(pk, )))
