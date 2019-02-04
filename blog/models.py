@@ -6,10 +6,13 @@ from django.urls import reverse
 class Post(models.Model):
     title=models.CharField(max_length=100)
     content=models.TextField()
+    upvotes=models.ManyToManyField(User,related_name="upvotes",blank=True)
     img=models.ImageField(upload_to='gallery/',null=True,blank=True) #soon to be an image upload feature
     date_posted=models.DateTimeField(default=timezone.now)
     author=models.ForeignKey(User,on_delete=models.CASCADE)
 
+    class Meta:
+        ordering=['-date_posted',]
     def __str__(self):
         return self.title
 
@@ -17,6 +20,9 @@ class Post(models.Model):
         return reverse('blog-home')
     #    return reverse('post-detail',kwargs={'pk':self.pk})
         #returns the full path as a string
+
+    def total_upvotes(self):
+        return self.upvotes.count()
 
 class Comment(models.Model):
     post=models.ForeignKey(Post,on_delete=models.CASCADE)
