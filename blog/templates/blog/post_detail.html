@@ -1,6 +1,6 @@
 
 {% extends 'blog/base.html' %}
-
+{% load crispy_forms_tags %}
 {% block content %}
 <div class="container">
     <!-- <img class="rounded-circle" src="{{post.author.profile.image.url}}"> -->
@@ -18,7 +18,8 @@
     {% else %}
     {% endif %}
     <hr width="50%" style="margin-left:0px;">
-    <p>{{total_upvotes}} Upvote{{ total_upvotes|pluralize }} </p>
+    <p><strong>{{total_upvotes}}</strong> Upvote{{ total_upvotes|pluralize }} | <strong>{{comments.count}}</strong> Comment{{ comments|pluralize }} </p>
+
     <!-- <p>{{ comments.content }}</p> -->
     {% if request.user.is_authenticated %}
     <form action="{% url 'upvote_post' %}" method="post">
@@ -31,5 +32,16 @@
       </form>
     {% endif %}
     <hr width="50%" style="margin-left:0px;">
+    <div class="main-comment-section">
+      {% for comment in comments %}
+      <p>{{ comment.content }}   -   <strong>{{ comment.user|capfirst }}</strong></p>
+      {% endfor %}
+    </div>
+    <form method="post">
+      {% csrf_token %}
+      {{ comment_form|crispy }}
+      <input type="submit" value="Submit" class="btn btn-outline-success ">
+    </form>
+
 </div>
 {% endblock content %}

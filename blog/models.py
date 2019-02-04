@@ -23,6 +23,7 @@ class Post(models.Model):
 
     def total_upvotes(self):
         return self.upvotes.count()
+
 class Comment(models.Model):
     post=models.ForeignKey(Post,on_delete=models.CASCADE)
     user=models.ForeignKey(User,on_delete=models.CASCADE)

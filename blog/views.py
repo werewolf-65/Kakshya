@@ -3,6 +3,7 @@ from django.http import HttpResponse,HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.contrib import messages
+from .forms import CommentForm
 from .models import Post,Comment
 from django.contrib.auth.mixins import LoginRequiredMixin,UserPassesTestMixin
 from django.views.generic import (
@@ -54,7 +55,7 @@ class PostCreateView(LoginRequiredMixin,CreateView):
 
 class PostUpdateView(LoginRequiredMixin,UserPassesTestMixin,UpdateView):
     model=Post
-    fields=['title','content']
+    fields=['title','content','img']
 
     def form_valid(self,form):
         form.instance.author=self.request.user
@@ -90,13 +91,25 @@ def post_list(request):
     return render(request,'blog/home.html',context)
 def post_detail(request,pk):
     post=Post.objects.get(id=pk)
+    comments=Comment.objects.filter(post=post).order_by('-id')
     is_upvoted=False
     if post.upvotes.filter(id=request.user.id).exists():
         is_upvoted=True
+    if request.method=='POST':
+        comment_form=CommentForm(request.POST or None)
+        if comment_form.is_valid():
+            content=request.POST.get('content')
+            comment=Comment.objects.create(post=post,user=request.user,content=content)
+            comment.save()
+            return HttpResponseRedirect(post.get_absolute_url())
+    else:
+        comment_form=CommentForm()
     context={
         'post':post,
         'is_upvoted':is_upvoted,
         'total_upvotes':post.total_upvotes(),
+        'comments':comments,
+        'comment_form':comment_form,
     }
     return render(request,'blog/post_detail.html',context)
 def upvote_post(request):
@@ -108,5 +121,4 @@ def upvote_post(request):
     else:
         post.upvotes.add(request.user)
         is_upvoted=True
-    return redirect("/")
-    # return HttpResponseRedirect(post.get_absolute_url())
+    return HttpResponseRedirect(post.get_absolute_url())
