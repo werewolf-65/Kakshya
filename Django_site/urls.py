@@ -23,6 +23,7 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('chat/',include('chat.urls')),
     path('',include('blog.urls')),
     path('register/',users_views.register,name='register'),
     path('login/',auth_views.LoginView.as_view(template_name="users/login.html"),name='login'),
