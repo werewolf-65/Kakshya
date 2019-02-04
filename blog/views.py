@@ -12,6 +12,7 @@ from django.views.generic import (
             UpdateView,
             DeleteView,
             )
+from django.core.paginator import Paginator
 # Create your views here.
 def home(request):
     context={'posts':Post.objects.all()}
@@ -41,7 +42,6 @@ class UserPostListView(ListView):
 
 class PostDetailView(DetailView):
     model=Post
-
 
 class PostCreateView(LoginRequiredMixin,CreateView):
     model=Post
@@ -77,3 +77,18 @@ class PostDeleteView(LoginRequiredMixin,UserPassesTestMixin,DeleteView):
             return True
         else:
             return False
+def post_list(request):
+    post_list=Post.objects.all()
+    paginator=Paginator(post_list,5)
+    page=request.GET.get('page')
+    posts=paginator.get_page(page)
+    context={
+        'posts':posts,
+    }
+    return render(request,'blog/home.html',context)
+def post_detail(request,pk):
+    post=Post.objects.get(id=pk)
+    context={
+        'post':post
+    }
+    return render(request,'blog/post_detail.html',context)

@@ -4,20 +4,20 @@
 {% block content %}
 <div class="container">
     <!-- <img class="rounded-circle" src="{{post.author.profile.image.url}}"> -->
-    <h2>{{object.title}}</h2>
-    <p>By <a href="{% url 'user-posts' object.author.username %}" >{{object.author}}</a> on {{object.date_posted|date:"F d, Y"}}</p>
-    {% if object.author == user %}
+    <h2>{{post.title}}</h2>
+    <p>By <a href="{% url 'user-posts' post.author.username %}" >{{post.author}}</a> on {{object.date_posted|date:"F d, Y"}}</p>
+    {% if post.author == user %}
     <div>
-    <a href="{% url 'post-update' object.id %}" class="btn btn-secondary btn-sm">Update</a>
-    <a href="{% url 'post-delete' object.id %}" class="btn btn-danger btn-sm">Delete</a>
+    <a href="{% url 'post-update' post.id %}" class="btn btn-secondary btn-sm">Update</a>
+    <a href="{% url 'post-delete' post.id %}" class="btn btn-danger btn-sm">Delete</a>
     </div>
     {% endif %}
-    <p>{{object.content}}</p>
-    {% if object.img %}
-    <img src="{{ object.img.url }}" alt="{{ object.title }}"  style="width:400px;">
+    <p>{{ post.content}}</p>
+    {% if post.img %}
+    <img src="{{ post.img.url }}" alt="{{ post.title }}"  style="width:400px;">
     {% else %}
     {% endif %}
-    <p>{{ comments.content }}</p>
+    <!-- <p>{{ comments.content }}</p> -->
     <hr width="50%" style="margin-left:0px;">
 </div>
 {% endblock content %}
