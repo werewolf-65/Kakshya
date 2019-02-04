@@ -13,6 +13,7 @@
           <td>Description</td>
           <td>Members</td>
           <td>Documentation</td>
+          <td>Project Link</td>
           <td>Stars From:</td>
         </tr>
       </thead>
@@ -39,9 +40,8 @@
           View Docs
           </a>
           </td>
+          <td><a href="{{ project.link }}">{{ project.link }}</a></td>
           <td>
-
-
           {% for starrer in project.stars.all %}
           <ul>
             {{ starrer.username }}
