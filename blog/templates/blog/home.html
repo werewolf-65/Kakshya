@@ -13,8 +13,18 @@
     {% else %}
     {% endif %}
     <hr width="50%" style="margin-left:0px;">
-    <a type="submit" name="like" class="btn btn-success btn-small" style="color:white;">Upvote</a>
-    <a href="{% url 'post-detail' post.id %}" name="comment" class="btn btn-primary btn-small" style="color:white;">Comment</a>
+    <!-- <form action="{% url 'upvote_post' %}" method="post">
+      {% csrf_token %}
+      {% if is_upvoted %}
+      <button type="submit" name="post_id" value="{{ post.id }}" class="btn btn-success btn-small">Upvoted</button>
+      {% else %}
+      <button type="submit" name="post_id" value="{{ post.id }}" class="btn btn-outline-success btn-small">Upvote</button>
+      {% endif %}
+      </form> -->
+    <a href="{% url 'post-detail' post.id %}" name="upvote" class="btn btn-primary btn-small" style="color:white;">Put Your Views</a>
+    <!-- <a href="{% url 'post-detail' post.id %}" name="comment" class="btn btn-primary btn-small" style="color:white;">Comment</a> -->
+    <!-- <a href="{% url 'post-detail' post.id %}" name="upvote-comment" class="btn btn-success btn-small" style="color:white;">Click to upvote/comment</a> -->
+
     <hr width="50%" style="margin-left:0px;">
     {% endfor %}
       {% if posts.has_previous %}

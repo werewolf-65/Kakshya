@@ -1,5 +1,5 @@
-from django.shortcuts import render,get_object_or_404
-from django.http import HttpResponse
+from django.shortcuts import render,get_object_or_404,redirect
+from django.http import HttpResponse,HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.contrib import messages
@@ -82,13 +82,31 @@ def post_list(request):
     paginator=Paginator(post_list,5)
     page=request.GET.get('page')
     posts=paginator.get_page(page)
+
     context={
         'posts':posts,
+
     }
     return render(request,'blog/home.html',context)
 def post_detail(request,pk):
     post=Post.objects.get(id=pk)
+    is_upvoted=False
+    if post.upvotes.filter(id=request.user.id).exists():
+        is_upvoted=True
     context={
-        'post':post
+        'post':post,
+        'is_upvoted':is_upvoted,
+        'total_upvotes':post.total_upvotes(),
     }
     return render(request,'blog/post_detail.html',context)
+def upvote_post(request):
+    post=get_object_or_404(Post,id=request.POST.get('post_id'))
+    is_upvoted=False
+    if post.upvotes.filter(id=request.user.id).exists():
+        post.upvotes.remove(request.user)
+        is_upvoted=False
+    else:
+        post.upvotes.add(request.user)
+        is_upvoted=True
+    return redirect("/")
+    # return HttpResponseRedirect(post.get_absolute_url())

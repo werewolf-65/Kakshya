@@ -17,7 +17,19 @@
     <img src="{{ post.img.url }}" alt="{{ post.title }}"  style="width:400px;">
     {% else %}
     {% endif %}
+    <hr width="50%" style="margin-left:0px;">
+    <p>{{total_upvotes}} Upvote{{ total_upvotes|pluralize }} </p>
     <!-- <p>{{ comments.content }}</p> -->
+    {% if request.user.is_authenticated %}
+    <form action="{% url 'upvote_post' %}" method="post">
+      {% csrf_token %}
+      {% if is_upvoted %}
+      <button type="submit" name="post_id" value="{{ post.id }}" class="btn btn-success btn-small">Upvoted</button>
+      {% else %}
+      <button type="submit" name="post_id" value="{{ post.id }}" class="btn btn-outline-success btn-small">Upvote</button>
+      {% endif %}
+      </form>
+    {% endif %}
     <hr width="50%" style="margin-left:0px;">
 </div>
 {% endblock content %}
