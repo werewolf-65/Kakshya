@@ -9,6 +9,7 @@ class Project(models.Model):
     doc=models.FileField(upload_to='projects/docs/')
     cover=models.ImageField(upload_to='projects/covers/',null=True,blank=True)
     stars=models.ManyToManyField(User,related_name="stars",blank=True)
+    link=models.URLField(max_length=100,blank=True)
     date_posted=models.DateTimeField(default=timezone.now)
 
     def __str__(self):

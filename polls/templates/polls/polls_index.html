@@ -1,0 +1,17 @@
+{% extends 'blog/base.html' %}
+{% block content %}
+<div class="container">
+<a href="{% url 'polls_create' %}" class="btn btn-outline-success btn-small" style="{color:white;}">Create a new poll</a>
+
+<br><br>
+{% if latest_questions %}
+<ul>
+    {% for question in latest_questions %}
+    <h5><li><a href="{% url 'polls_details' question.id %}"><b>{{question.question_text}}</b></a></li></h5>
+    {% endfor %}
+</ul>
+{% else %}
+  <p>No questions to display</p>
+{% endif %}
+</div>
+{% endblock %}

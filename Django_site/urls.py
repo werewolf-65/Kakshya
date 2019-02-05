@@ -19,6 +19,8 @@ from django.urls import path,include
 from users import views as users_views
 from library import views as library_views
 from projects import views as pro_views
+from polls import views as polls_views
+from search import views as search_views
 from django.conf import settings
 from django.conf.urls.static import static
 
@@ -45,6 +47,13 @@ urlpatterns = [
     path('projects/',pro_views.project_list,name="project_list"),
     path('projects/upload',pro_views.upload_project,name="upload_project"),
     path('project/star',pro_views.star_project,name='star_project'),
+    path('polls/',polls_views.index,name="polls_index"),
+    path('polls/create/',polls_views.create_poll,name="polls_create"),
+    path('polls/<int:question_id>/',polls_views.detail,name="polls_details"),
+    path('polls/<int:question_id>/results/',polls_views.results,name="polls_results"),
+    path('polls/<int:question_id>/vote/',polls_views.vote,name="polls_vote"),
+    path('polls/<int:question_id>/add/',polls_views.add_options,name="add_options"),
+    path('search/',search_views.search,name='search'),
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)

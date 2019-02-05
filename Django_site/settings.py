@@ -31,9 +31,12 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'search',
+    'django_elasticsearch_dsl',
     'projects',
     'channels',
     'chat',
+    'polls',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -46,6 +49,12 @@ INSTALLED_APPS = [
     'crispy_forms'
 ]
 
+# -*- coding: utf-8 -*-
+ELASTICSEARCH_DSL={ 
+    'default':{
+        'hosts':'localhost:9200'
+    },
+}
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
