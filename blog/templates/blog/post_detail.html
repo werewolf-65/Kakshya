@@ -13,12 +13,13 @@
     </div>
     {% endif %}
     <p>{{ post.content}}</p>
-    <a href="{{ post.img.url }}">
+
     {% if post.img %}
+    <a href="{{ post.img.url }}">
     <img src="{{ post.img.url }}" alt="{{ post.img.url }}"  style="width:400px;">
+    </a>
     {% else %}
     {% endif %}
-    </a>
     <hr width="50%" style="margin-left:0px;">
     <p><strong>{{total_upvotes}}</strong> Upvote{{ total_upvotes|pluralize }} | <strong>{{comments.count}}</strong> Comment{{ comments|pluralize }} </p>
 

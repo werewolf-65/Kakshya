@@ -54,6 +54,7 @@ urlpatterns = [
     path('polls/<int:question_id>/vote/',polls_views.vote,name="polls_vote"),
     path('polls/<int:question_id>/add/',polls_views.add_options,name="add_options"),
     path('search/',search_views.search,name='search'),
+    path('contacts/',users_views.contact_list,name="contact_list")
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
