@@ -10,7 +10,7 @@
     <p>{{post.content}}</p>
     {% if post.img %}
     <a href="{% url 'post-detail' post.id %}" >
-    <img src="{{ post.img.url }}" alt="{{ post.title }}"  style="width:400px;">
+    <img src="{{ post.img.url }}" alt="{{ post.img.url }}"  style="width:400px;">
     </a>
     {% else %}
     {% endif %}

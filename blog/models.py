@@ -7,7 +7,7 @@ class Post(models.Model):
     title=models.CharField(max_length=100)
     content=models.TextField()
     upvotes=models.ManyToManyField(User,related_name="upvotes",blank=True)
-    img=models.ImageField(upload_to='gallery/',null=True,blank=True) #soon to be an image upload feature
+    img=models.FileField(upload_to='gallery/',null=True,blank=True) #soon to be an image upload feature
     date_posted=models.DateTimeField(default=timezone.now)
     author=models.ForeignKey(User,on_delete=models.CASCADE)
 

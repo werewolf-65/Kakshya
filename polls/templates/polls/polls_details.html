@@ -18,8 +18,8 @@
     {% endfor %}
   </ul> -->
 <br>
-  <a href="{% url 'add_options' question.id %}" class="btn btn-small">Add options to this poll</a>
+  <a href="{% url 'add_options' question.id %}" class="btn btn-outline-success">Add options to this poll</a>
   <br>
-  <a href="{% url 'polls_results' question.id %}" class="btn btn-small">View the Results</a>
+  <a href="{% url 'polls_results' question.id %}" class="btn btn-outline-success">View the Results</a>
 </div>
 {% endblock %}
