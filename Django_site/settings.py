@@ -34,6 +34,7 @@ INSTALLED_APPS = [
     'projects',
     'channels',
     'chat',
+    'polls',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
