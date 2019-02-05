@@ -90,6 +90,7 @@ def post_list(request):
 
     }
     return render(request,'blog/home.html',context)
+
 def post_detail(request,pk):
     post=Post.objects.get(id=pk)
     comments=Comment.objects.filter(post=post).order_by('-id')
@@ -125,3 +126,15 @@ def upvote_post(request):
         post.upvotes.add(request.user)
         is_upvoted=True
     return HttpResponseRedirect(reverse('post-detail', args=(pk, )))
+
+def gallery(request):
+    post_list=Post.objects.all()
+    paginator=Paginator(post_list,6)
+    page=request.GET.get('page')
+    posts=paginator.get_page(page)
+
+    context={
+        'posts':posts,
+
+    }
+    return render(request,'blog/gallery.html',context)
