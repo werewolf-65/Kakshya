@@ -51,7 +51,7 @@
         <td>
           <form action="{% url 'star_project' %}" method="post">
             {% csrf_token %}
-            <button type="submit" name="post_id" value="{{ project.id }}" class="btn btn-warning btn-small">Star</button>
+            <button type="submit" name="post_id" value="{{ project.id }}" class="fa fa-star btn" onclick="this.style.color='yellow'"></button>
             </form>
         </td>
         </tr>
