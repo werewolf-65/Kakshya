@@ -1,0 +1,20 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+<div class="container">
+<form method="get">
+  <input class="form-control form-control-lg form-control-borderless" id="q" name="q" type="text" placeholder="Search for Posts" \>
+</form>
+
+{% for item in posts %}
+<br>
+<a href="{% url 'post-detail' item.id %}" >
+<h3>{{item.title}}</h3>
+</a>
+<br>
+<p>{{item.content}}</p>
+<img src="{{item.img}}" style="width:400px;">
+<br>
+{% endfor %}
+</div>
+{% endblock %}

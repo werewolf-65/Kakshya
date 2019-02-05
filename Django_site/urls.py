@@ -20,6 +20,7 @@ from users import views as users_views
 from library import views as library_views
 from projects import views as pro_views
 from polls import views as polls_views
+from search import views as search_views
 from django.conf import settings
 from django.conf.urls.static import static
 
@@ -51,7 +52,8 @@ urlpatterns = [
     path('polls/<int:question_id>/',polls_views.detail,name="polls_details"),
     path('polls/<int:question_id>/results/',polls_views.results,name="polls_results"),
     path('polls/<int:question_id>/vote/',polls_views.vote,name="polls_vote"),
-    path('polls/<int:question_id>/add/',polls_views.add_options,name="add_options")
+    path('polls/<int:question_id>/add/',polls_views.add_options,name="add_options"),
+    path('search/',search_views.search,name='search'),
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
