@@ -84,7 +84,7 @@ body {
     height: 65px;
   }
 }
-#frame #sidepanel #profile .wrap img {
+/* #frame #sidepanel #profile .wrap img {
   width: 60px;
   border-radius: 50%;
   padding: 3px;
@@ -96,7 +96,7 @@ body {
   -o-transition: 0.3s border ease;
   -webkit-transition: 0.3s border ease;
   transition: 0.3s border ease;
-}
+} */
 @media screen and (max-width: 735px) {
   #frame #sidepanel #profile .wrap img {
     width: 60px;
