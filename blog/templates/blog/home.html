@@ -14,11 +14,11 @@
           <div class="eve container" >
             <div class="events_only">
 
-              <ul  style="list-style-type:square">
+              <ul  style="list-style-type:square;padding:0">
                 {% for event in events %}
-                <a href="{% url 'event-list' %}"><li class="eventProg">{{event.title}}</li>
-                <li class="eventDay">@{{event.event_date}}</li></a>
-                <br>
+                <a href="{% url 'event-list' %}"><li class="eventProg">{{event.title}}
+                @{{event.event_date}}</li></a>
+
                 {% endfor %}
               </ul>
 
@@ -57,7 +57,7 @@
   </div>
 
     <div class="menu_now col-md-2">
-      <div class="temporary_menu card bg-light" style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+      <div class="temporary_menu card bg-light" style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);border-color:black;border-width:2px">
         <h2 class="text-center card" style="display:inline">Menu <i class="fa fa-bars" style="font-size:20px"></i> </h2>
         <ul style="padding:0">
           <a href="{% url 'post-create' %}"><li><i class="fa fa-pen"></i> Create a Post</li></a>
