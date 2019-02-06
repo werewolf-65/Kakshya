@@ -35,23 +35,24 @@
       <div class="birthdays card bg-light" style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
         <h2 class="text-center card" style="display:inline">Birthdays <span class="fa fa-birthday-cake"></span></h2>
         <div class="birthday_panel">
+
           <ul class="list container" style="background-color:#ffff">
-            <li class="photo"><img class="avatar" src="black.png" alt=""></li>
-            <li class="name">2</li>
-          </ul>
-          <ul class="list container " style="background-color:#ffff">
-            <li class="photo"><img class="avatar" src="black.png" alt=""></li>
-            <li class="name">2</li>
+            {% for user in users %}
+            <!-- <li><img src="{{ user.username }}" width="20px"></li> -->
+            <li>{{ user.username|capfirst }}: </li>
+            <li>{{user.profile.birthdate}}</li>
+            <br>
+            {% endfor %}
           </ul>
 
         </div>
 
-        <button type="" name="" class="birthday_addbtn btn btn-outline-secondary mb-2"><span class="far fa-plus-square">A day more older</span></button>
+        <!-- <button type="" name="" class="birthday_addbtn btn btn-outline-secondary mb-2"><span class="far fa-plus-square">A day more older</span></button>
         <div class="birthday_form" style="display:none">
           <input type="text" name="" value="" class="birthday_text form-control mb-2" placeholder="Birthday Student">
           <input type="text" class="birthday_date form-control mb-2" placeholder="birthdate">
           <button type="submit" name="" class="birthday_donebtn btn btn-outline-secondary ">Done</button>
-        </div>
+        </div> -->
 
     </div>
   </div>

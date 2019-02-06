@@ -5,6 +5,7 @@ from django.contrib.auth.models import User
 from django.contrib import messages
 from .forms import CommentForm
 from .models import Post,Comment,Event,Notice
+from users.models import Profile
 from django.contrib.auth.mixins import LoginRequiredMixin,UserPassesTestMixin
 from django.views.generic import (
             ListView,
@@ -86,10 +87,12 @@ def post_list(request):
     posts=paginator.get_page(page)
     events=Event.objects.all()
     notices=Notice.objects.all()
+    users=User.objects.all()
     context={
         'posts':posts,
         'events':events,
         'notices':notices,
+        'users':users,
     }
     return render(request,'blog/home.html',context)
 
