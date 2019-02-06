@@ -60,6 +60,8 @@
             </form>
           {% endif %}
         </td>
+        <td><a href="{% url 'update_project' project.id %}" class="btn btn-info btn-sm" >Update</a></td>
+      <td><a href="{% url 'delete_project' project.id %}" class="btn btn-danger btn-sm">Delete</a></td>
         </tr>
         {% endfor %}
       </tbody>

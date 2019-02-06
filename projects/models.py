@@ -1,6 +1,7 @@
 from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import User
+from django.urls import reverse
 # Create your models here.
 class Project(models.Model):
     title=models.CharField(max_length=200)
@@ -17,3 +18,6 @@ class Project(models.Model):
 
     def total_upvotes(self):
         return self.upvotes.count()
+
+    def get_absolute_url(self):
+        return reverse('project_list')
