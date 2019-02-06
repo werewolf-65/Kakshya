@@ -1,0 +1,47 @@
+{% extends 'blog/base.html' %}
+{% block content %}
+<div class="container">
+    <h1>Events List</h1>
+    <p>
+<a href="{% url 'event-create' %}" class="btn btn-primary btn-small">Add Events</a>
+    </p>
+    <table class="table">
+      <thead>
+        <tr>
+          <td>Event Title</td>
+          <td>Description</td>
+          <td>Date</td>
+          <td>Participating Users</td>
+        </tr>
+      </thead>
+      <tbody>
+        {% for event in events %}
+        <tr>
+          <td>{{ event.title }}</td>
+          <td>{{ event.content }}</td>
+          <td>{{ event.event_date }}</td>
+          <td>
+            {% for participant in event.participate.all %}
+            <ul>
+              {{ participant.username }}
+            </ul>
+            {% endfor %}
+          </td>
+        <td>
+          <form action="{% url 'participate' %}" method="post">
+            {% csrf_token %}
+            <button type="submit" name="event_id" value="{{ event.id }}" class="btn btn-success btn-sm">Participate</button>
+            </form>
+        </td>
+        <td>
+        <a href="{% url 'event-update' event.id %}" class="btn btn-info btn-sm">Update</a>
+        </td>
+        <td>
+        <a href="{% url 'event-delete' event.id %}" class="btn btn-danger btn-sm">Delete</a>
+        </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+</div>
+{% endblock %}

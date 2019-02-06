@@ -1,11 +1,12 @@
 
 {% extends 'blog/base.html' %}
-
+{% load static %}
 {% block content %}
+<link rel="stylesheet" type="text/css" href="{% static 'blog/home_style.css' %}">
 <div class="container">
 <h1 class="mb-3">Posts by {{ view.kwargs.username }} ({{ page_obj.paginator.count }})</h1>
-    {% for post in posts %}
-    <div class="stories container mb-2" >
+{% for post in posts %}
+    <div class="feed_shade " style="margin:0">
     <!-- <img class="rounded-circle" src="{{post.author.profile.image.url}}"> -->
     <a href="{% url 'post-detail' post.id %}" ><h5>{{post.title}}</h5></a>
     <p>By <a href="{% url 'user-posts' post.author.username %}" >{{post.author}}</a> on {{post.date_posted|date:"F d, Y"}}</p>
@@ -16,6 +17,8 @@
     {% endif %}
     <hr width="50%" style="margin-left:0px;">
     {% endfor %}
+
+
   </div>
     {% if is_paginated %}
       {% if page_obj.has_previous %}

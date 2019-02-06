@@ -13,24 +13,22 @@
         <h2 class="text-center card " style="display:inline">Events <span class="far fa-calendar-check"></span></h2>
           <div class="eve container" >
             <div class="events_only">
+
               <ul class="event 1">
-                <a href="#"><li class="eventProg">FlashMob</li>
-                <li class="eventDay">@4pm</li></a>
+                {% for event in events %}
+                <a href="{% url 'event-list' %}"><li class="eventProg">{{event.title}}</li>
+                <li class="eventDay">@{{event.event_date}}</li></a>
+                {% endfor %}
               </ul>
 
-              <ul class="event 2">
-                <a href="#"><li class="eventProg">FlashMob</li>
-                <li class="eventDay">@4pm</li></a>
-              </ul>
-            </div>
 
-
-            <button type="" name="" class="event_addbtn btn btn-outline-secondary mb-2"><span class="far fa-plus-square">Add</span></button>
+            <a href="{% url 'event-create' %}" class="event_addbtn btn btn-outline-secondary mb-2"><span class="far fa-plus-square">Add</span></a>
             <form class="events_form" style="display:none">
               <input type="text" name="" value="" class="event_text form-control mb-2" placeholder="Event Name">
               <input type="text" class="event_time form-control mb-2" placeholder="Event Time">
               <button type="button" name="" class="event_donebtn btn btn-outline-secondary">Done</button>
             </form>
+          </div>
           </div>
       </div>
       <div class="birthdays card bg-light" style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
@@ -71,53 +69,26 @@
 
     </div>
 
-    <div class="temporary_menu card bg-light " style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
-      <h2 class="text-center">Menu</h2>
-      <ul style="padding:0">
-        <a href="{% url 'post-create' %}"><li><i class="fa fa-pen"></i> Create a Post</li></a>
-        <a href="{% url 'polls_create' %}"><li><i class="fa fa-poll"></i> Create a Poll</li></a>
-        <!-- <a href="#"><li><i class="fa fa-newspaper"></i> Post a journal</li></a>
-        <a href="#"><li><i class="fa fa-question"></i> Ask a question</li></a> -->
-        <a href="{% url 'upload_book' %}"><li><i class="fas fa-book-reader"></i> Upload a Book</li></a>
-        <a href="{% url 'upload_project' %}"><li><i class="fas fa-tools"></i> Upload a Project</li></a>
 
-      </ul>
-    </div>
 
     </div>
     <div class="image col-md-8 ">
 
-      <!-- <div class="centered container shadow-lg p-3 mb-5 bg-white rounded" >
-
-        <br>
-        <div class="slider container mb-4">
-          <! <div class="col-sm-12"> //its already removed
-          <ul class="slides">
-            <li class="slide"><img class="img-fluid" src="4.JPG" width="800px" height="533px"></li><!// have to make responsive
-            <li class="slide"><img class="img-fluid" src="6.JPG" width="800px" height="533px"></li>
-            <li class="slide"><img class="img-fluid" src="otter3.jpg"></li>
-            <li class="slide"><img class="img-fluid" src="otter4.jpg"></li>
-            <li class="slide"><img class="img-fluid" src="otter5.jpg"></li>
-          </ul>
-        </div>
-      </div> -->
     </div>
     <div class="notice col-md-2">
       <div class="right-box card bg-light mb-3" style="  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
-        <h2 class="text-center card" style="display:inline">Notices<span class="fas fa-bullhorn"></span></h2>
+        <h2 class="text-center card" style="display:inline"><a href="{% url 'notice-list' %}">Notices</a><span class="fas fa-bullhorn"></span></h2>
+
         <marquee scrolldelay="100" direction="up" >
           <center class="marks">
-            <a href="#" target="_blank">Sailesh's birthday Magh12</a><br>
-            <a href="#" target="_blank">FlashMob</a><br>
-            <a href="#" target="_blank">Hack-a-week</a><br>
-            <a href="#" target="_blank">Codecamp</a><br>
-            <a href="#" target="_blank">Energy-Hackathon</a><br>
-            <a href="#" target="_blank">Codejam</a><br>
-            <a href="#" target="_blank">Circuit Fabrication</a><br>
-            <a href="#" target="_blank">Notice1</a><br>
+          <ul>
+          {% for notice in notices %}
+          <li>{{ notice.title }}</li>
+          {% endfor %}
+        </ul>
         </center>
         </marquee>
-        <button class="add_notice btn btn-secondary mb-2">Add notice</button>
+        <a class="add_notice btn btn-secondary mb-2" href="{% url 'notice-create' %}">Add notice</a>
         <div class="add_input" style="display:none">
           <input type="text" name="" value="" id="notice_input" class="form-control mb-2">
           <button type="submit" name="button" class="add_button btn btn-secondary">Add</button>
@@ -136,7 +107,19 @@
 <!-- main content -->
 <div class="section container"><hr>
     <div class="row">
-      <div class="col-sm-3">
+      <div class="col-sm-3 ">
+        <div class="temporary_menu card bg-light" style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);margin:0;position:fixed;margin-top:90px">
+          <h2 class="text-center card" style="display:inline">Menu <i class="fa fa-bars" style="font-size:20px"></i> </h2>
+          <ul style="padding:0">
+            <a href="{% url 'post-create' %}"><li><i class="fa fa-pen"></i> Create a Post</li></a>
+            <a href="{% url 'polls_create' %}"><li><i class="fa fa-poll"></i> Create a Poll</li></a>
+            <!-- <a href="#"><li><i class="fa fa-newspaper"></i> Post a journal</li></a>
+            <a href="#"><li><i class="fa fa-question"></i> Ask a question</li></a> -->
+            <a href="{% url 'upload_book' %}"><li><i class="fas fa-book-reader"></i> Upload a Book</li></a>
+            <a href="{% url 'upload_project' %}"><li><i class="fas fa-tools"></i> Upload a Project</li></a>
+
+          </ul>
+        </div>
         <!-- <div class="project container card bg-light" style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
           <h3 class="text-center">Projects<span class="fa fa-projects"></span></h3>
             <ul style="padding:0">
@@ -162,9 +145,9 @@
       </div>
       <div class="feed col-sm-6">
         <div class="news-feed">
-          <h2 class="text-center ">News Feed</h2>
-          <div class="tab-panels" style="background-color:#FBFFFB">
-            <ul class="tabs" style="background-color:#b1abae14"><!--#f8f9fa for light color-->
+           <h2 class="text-center ">News Feed</h2>
+          <!--<div class="tab-panels" style="background-color:#FBFFFB">
+            <ul class="tabs" style="background-color:#b1abae14">#f8f9fa for light color
               <li rel="panel1" class="active"><h5>Post</h5></li>
               <li rel="panel2"><h5>Article</h5></li>
               <li rel="panel3"><h5>Poll</h5></li>
@@ -172,7 +155,7 @@
               <li rel="panel5"><h5>Journal</h5></li>
             </ul>
             <div id="panel1" class="panel active">
-              <div class="boxx container"><!--duita box xa-->
+              <div class="boxx container"><!--duita box xa-
                 <form class="forms" action="forms.html" method="post">
                   <h2>Post to the feed</h2>
                   <textarea class="text-area" name="texts" rows="8" cols="80" placeholder="Feel free to share."></textarea><br>
@@ -192,7 +175,7 @@
               <div class="article">
                 <h2 >Post an article:</h2>
                 <ul class="article_ul">
-                  <!-- <li><img class="rounded-circle" src="board.jpg" alt="" width="50px"></li> -->
+                  <!-- <li><img class="rounded-circle" src="board.jpg" alt="" width="50px"></li>
 
                     <form class="" action="index.html" method="post" >
                       <li>Title<input type="text" placeholder="Title for your article" class="form-control"></li><br>
@@ -246,7 +229,7 @@
                 <button class="btn btn-success" type="submit" name="button">Submit</button>
               </div>
             </div>
-        </div>
+        </div> -->
       </div>
   <!--just the tab panels from tab-panel_widget-->
         <!-- <div class="container"> -->
@@ -296,8 +279,6 @@
              <a class="btn btn-outline-dark mb-4" href="?page={{posts.paginator.num_pages}}">Last</a>
            {% endif %}
 
-     {% endblock content %}
-
        </div>
     </div><!--col-sm-6-->
 
@@ -333,8 +314,11 @@
         </div> -->
       </div>
     </div>
+  </div><!--section container-->
 
 
 
 
-    </div><!--section container-->
+
+
+{% endblock content %}

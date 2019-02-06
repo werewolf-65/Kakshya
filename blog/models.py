@@ -32,3 +32,33 @@ class Comment(models.Model):
 
     def __str__(self):
         return "{}-{}".format(self.post.title,self.user.username)
+
+class Event(models.Model):
+    title=models.CharField(max_length=100)
+    content=models.CharField(max_length=100)
+    event_date=models.DateTimeField()
+    participate=models.ManyToManyField(User,related_name="participated",blank=True)
+    author=models.ForeignKey(User,on_delete=models.CASCADE)
+
+    class Meta:
+        ordering=['-event_date', ]
+
+    def __str__(self):
+        return self.title
+
+    def get_absolute_url(self):
+        return reverse('blog-home')
+
+class Notice(models.Model):
+    title=models.CharField(max_length=100)
+    author=models.ForeignKey(User,on_delete=models.CASCADE)
+    pub_date=models.DateTimeField(default=timezone.now)
+
+    class Meta:
+        ordering=['-pub_date',]
+
+    def get_absolute_url(self):
+        return reverse('blog-home')
+
+    def __str__(self):
+        return self.title
