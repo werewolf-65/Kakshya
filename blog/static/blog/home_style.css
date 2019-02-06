@@ -26,27 +26,26 @@ body{
     position:static;
   }
 }*/
-@media (min-width:1600px) {
-  .notice{
+ @media (min-width:1600px) {
+  /* .menu_now{
+    margin-left:150px;
+  } */
+  .temporary_menu{
+    /* position: fixed; */
+  }
+  /* .notice{
     position: fixed;
     top:2;
     right:0;
-  }
-  .slide .row .events{
+  } */
+  /* .slide .row .events{
     position:fixed;
     width: 100%;
   }
   .slide .row .image {
     margin-left: 7%;
-  }
-  .menu_now{
-    margin-left:150px;
-  }
-  .temporary_menu{
-    position: fixed;
-  }
-
-}
+  } */
+} */
 /* @media (max-width:1600px) {
   .slide .row .image {
     margin: 0px;
@@ -75,25 +74,34 @@ body{
 
   /*temporary_menu*/
   .temporary_menu{
+    width: 300px;
+    height:auto;
     margin-top:10%;
-    margin-bottom: 20%;
-    margin-left: 10%;
+    margin-left: 3%;
     padding: 2px;
+    position: fixed;
+
    }
-  .temporary_menu li, .events_only li{
-    padding: 5px;
-    margin: 5px;
+
+   .events_only li{
+     padding: 5px;
+     margin: 5px;
+   }
+  .temporary_menu li{
+    padding: 20px;
+    margin: 10px;
+    font-size: 20px;
   }
-  .temporary_menu li:hover, .events_only li:hover{
+  .temporary_menu li:hover{
     background-color:#343a40;
   }
 
-  .temporary_menu a, .events_only a{
+  .temporary_menu a{
     text-decoration: none;
     color:black;
   }
 
-  .temporary_menu a:hover, .events_only a:hover{
+  .temporary_menu a:hover{
     color:white;
   }
 
@@ -107,26 +115,10 @@ body{
 
 
 .right-box{
-  height: auto;
+  /* height: auto;
   margin-right: 20%;
-  margin-top: 35%;
-  padding: 10px;
-}
-
-.avatar{
-  border: 2px solid black;
-  border-radius: 50%;
-  width: 50px;
-  height: 50px;
-}
-
-.list li{
-  display:inline;
-}
-
-.list{
-  border: 2px solid #ccc;
-  border-radius: 10px;
+  margin-top: 0%;
+  padding: 10px; */
 }
 
 .news-feed{

@@ -1,13 +1,14 @@
 {% extends 'blog/base.html' %}
 {% block content %}
 <div class="container">
-<a href="{% url 'polls_create' %}" class="btn btn-outline-success btn-small" style="{color:white;}">Create a new poll</a>
+<a href="{% url 'polls_create' %}" class="btn btn-outline-primary btn-sm" style="{color:white;}">Create a new poll</a>
 
 <br><br>
+<h2>List of recent polls-</h2>
 {% if latest_questions %}
-<ul>
+<ul style="list-style-type:circle">
     {% for question in latest_questions %}
-    <h5><li><a href="{% url 'polls_details' question.id %}"><b>{{question.question_text}}</b></a></li></h5>
+    <h6><li><a href="{% url 'polls_details' question.id %}"><b>{{question.question_text}}</b></a></li></h6>
     {% endfor %}
 </ul>
 {% else %}
