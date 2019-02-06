@@ -8,57 +8,11 @@
 <div class="slide" style="">
   <div class="row">
 
-    <div class="events col-md-2" >
-      <div class="box card bg-light" style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
-        <h2 class="text-center card " style="display:inline">Events <span class="far fa-calendar-check"></span></h2>
-            <div class="events_only">
 
-              <ul  style="list-style-type:square;padding:0">
-                {% for event in events %}
-                <a href="{% url 'event-list' %}" style="text-decoration:none"><li class="eventProg">{{event.title}}
-                @{{event.event_date}}</li></a>
+    <div class="menu_now col-md-3" >
+      <div class="temporary_menu card " style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);border-color:#fff;border-width:2px;">
+        <h1 class="text-center card" style="display:inline">Menu <i class="fa fa-terminal" style="font-size:20px"></i> </h1>
 
-                {% endfor %}
-              </ul>
-
-
-            <a href="{% url 'event-create' %}" class="event_addbtn btn btn-outline-secondary mb-2"><span class="far fa-plus-square">Add</span></a>
-            <form class="events_form" style="display:none">
-              <input type="text" name="" value="" class="event_text form-control mb-2" placeholder="Event Name">
-              <input type="text" class="event_time form-control mb-2" placeholder="Event Time">
-              <button type="button" name="" class="event_donebtn btn btn-outline-secondary">Done</button>
-            </form>
-          </div>
-      </div>
-      <div class="birthdays card bg-light" style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
-        <h2 class="text-center card" style="display:inline">Birthdays <span class="fa fa-birthday-cake"></span></h2>
-        <div class="birthday_panel">
-
-          <ul class="list container" style="background-color:#ffff">
-            {% for user in users %}
-            <!-- <li><img src="{{ user.username }}" width="20px"></li> -->
-            <li><img src="{{ user.profile.image.url }}" width="40px"> </li>
-            <li>{{ user.username|capfirst }}: </li>
-            <li>{{user.profile.birthdate}}</li>
-            <br>
-            {% endfor %}
-          </ul>
-
-        </div>
-
-        <!-- <button type="" name="" class="birthday_addbtn btn btn-outline-secondary mb-2"><span class="far fa-plus-square">A day more older</span></button>
-        <div class="birthday_form" style="display:none">
-          <input type="text" name="" value="" class="birthday_text form-control mb-2" placeholder="Birthday Student">
-          <input type="text" class="birthday_date form-control mb-2" placeholder="birthdate">
-          <button type="submit" name="" class="birthday_donebtn btn btn-outline-secondary ">Done</button>
-        </div> -->
-
-    </div>
-  </div>
-
-    <div class="menu_now col-md-2">
-      <div class="temporary_menu card bg-light" style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);border-color:black;border-width:2px">
-        <h2 class="text-center card" style="display:inline">Menu <i class="fa fa-bars" style="font-size:20px"></i> </h2>
         <ul style="padding:0">
           <a href="{% url 'post-create' %}"><li><i class="fa fa-pen"></i> Create a Post</li></a>
           <a href="{% url 'polls_create' %}"><li><i class="fa fa-poll"></i> Create a Poll</li></a>
@@ -71,9 +25,13 @@
       </div>
     </div>
 
-    <div class="image col-md-5">
-      <div class="news-feed">
-         <h2 class="text-center ">News Feed</h2>
+    <!-- <div class="col-md-1">
+
+    </div> -->
+
+    <div class="image col-md-6 card shadow-lg p-3 mb-5 bg-white rounded">
+      <div class="news-feed ">
+         <h2 class="text-center ">News Feed <i class="fa fa-rss"></i></h2>
       </div>
      <div class="feed">
          {% for post in posts %}
@@ -89,58 +47,96 @@
 
          {% if post.img %}
          <a href="{% url 'post-detail' post.id %}" >
-         <img src="{{ post.img.url }}" alt="{{ post.img.url }}"  style="width:400px;">
+         <img src="{{ post.img.url }}" alt="{{ post.img.url }}"  style="max-width:600px;align-items:center" class="mx-auto d-block">
          </a>
          {% else %}
          {% endif %}
          <hr width="50%" style="margin-left:0px;">
-         <a href="{% url 'post-detail' post.id %}" name="upvote" class="btn btn-primary btn-small" style="color:white;">Put Your Views</a>
+         <a href="{% url 'post-detail' post.id %}" name="upvote" ><button name="" class="btn btn-primary btn-small" style="color:white;">Put Your Views</button></a>
 
          <hr width="50%" style="margin-left:0px;">
      </div>
    </div>
+     <p style="text-align:center">
+
        {% endfor %}
-         {% if posts.has_previous %}
-           <a class="btn btn-outline-dark mb-4" href="?page=1">First</a>
-           <a class="btn btn-outline-dark mb-4" href="?page={{posts.previous_page_number }}">Previous</a>
-         {% endif %}
+       {% if posts.has_previous %}
+       <a class="btn btn-outline-dark mb-4" href="?page=1">First</a>
+       <a class="btn btn-outline-dark mb-4" href="?page={{posts.previous_page_number }}">Previous</a>
+       {% endif %}
 
-         {% for num in posts.paginator.page_range %}
-           {% if posts.number == num %}
-             <a class="btn btn-dark mb-4" href="?page={{num}}">{{num}}</a>
-           {% elif num > posts.number|add:'-3' and num < posts.number|add:'3' %}
-           <a class="btn btn-outline-dark mb-4" href="?page={{num}}">{{num}}</a>
-           {% endif %}
-         {% endfor %}
+       {% for num in posts.paginator.page_range %}
+       {% if posts.number == num %}
+       <a class="btn btn-dark mb-4" href="?page={{num}}">{{num}}</a>
+       {% elif num > posts.number|add:'-3' and num < posts.number|add:'3' %}
+       <a class="btn btn-outline-dark mb-4" href="?page={{num}}">{{num}}</a>
+       {% endif %}
+       {% endfor %}
 
-         {% if posts.has_next %}
-           <a class="btn btn-outline-dark mb-4" href="?page={{ posts.next_page_number }}">Next</a>
-           <a class="btn btn-outline-dark mb-4" href="?page={{posts.paginator.num_pages}}">Last</a>
-         {% endif %}
+       {% if posts.has_next %}
+       <a class="btn btn-outline-dark mb-4" href="?page={{ posts.next_page_number }}">Next</a>
+       <a class="btn btn-outline-dark mb-4" href="?page={{posts.paginator.num_pages}}">Last</a>
+       {% endif %}
+     </p>
        </div>
      </div>
 
 
-    <div class="notice col-md-3">
-      <div class="right-box card bg-light mb-3" style="  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
-        <h2 class="text-center card" style="display:inline"><a href="{% url 'notice-list' %}">Notices</a><span class="fas fa-bullhorn"></span></h2>
 
-        <marquee scrolldelay="100" direction="up" >
-          <center class="marks">
-          <ul>
-          {% for notice in notices %}
-          <li>{{ notice.title }}</li>
-          {% endfor %}
-        </ul>
-        </center>
-        </marquee>
-        <a class="add_notice btn btn-secondary mb-2" href="{% url 'notice-create' %}">Add notice</a>
-        <div class="add_input" style="display:none">
-          <input type="text" name="" value="" id="notice_input" class="form-control mb-2">
-          <button type="submit" name="button" class="add_button btn btn-secondary">Add</button>
+    <div class="notice col-md-3">
+      <div class="" style="margin-right:10%">
+        <div class="box card bg-light mb-3" style="  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+          <h2 class="text-center card" style="display:inline"><a href="{% url 'notice-list' %}">Notices</a><span class="fas fa-bullhorn"></span></h2>
+
+          <marquee scrolldelay="100" direction="up" >
+            <center class="marks">
+            <ul>
+            {% for notice in notices %}
+            <li>{{ notice.title }}</li>
+            {% endfor %}
+          </ul>
+          </center>
+          </marquee>
+          <a class=" btn btn-secondary mb-2" href="{% url 'notice-create' %}">Add notice</a>
+
         </div>
+        <div class="box card bg-light" style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+          <h2 class="text-center card " style="display:inline"><a href="{% url 'event-list' %}">Events <span class="far fa-calendar-check"></span></h2>
+              <div class="events_only">
+
+                <ul  style="list-style-type:square;padding:0">
+                  {% for event in events %}
+                  <a href="{% url 'event-list' %}" style="text-decoration:none"><li class="eventProg">{{event.title}}
+                  @{{event.event_date}}</li></a>
+
+                  {% endfor %}
+                </ul>
+
+
+              <a class=" btn btn-secondary mb-2" href="{% url 'event-create' %}">Add Event</a>
+
+            </div>
+        </div>
+        <div class="birthdays card bg-light" style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+          <h2 class="text-center card" style="display:inline">Birthdays <span class="fa fa-birthday-cake"></span></h2>
+          <div class="birthday_panel">
+
+            <ul class="list container" style="background-color:#ffff">
+              {% for user in users %}
+             <li><img src="{{ user.profile.image.url }}" width="40px">
+              {{ user.username|capfirst }}:
+              {{user.profile.birthdate}}</li>
+              <br>
+              {% endfor %}
+            </ul>
+
+          </div>
+
       </div>
+      </div>
+
     </div>
+
 
 
 

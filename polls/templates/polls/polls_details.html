@@ -10,7 +10,7 @@
   <input type="radio" name="choice" id="choice{{forloop.counter}}" value="{{choice.id}}">
   <label for="choice{{forloop.counter}}">{{choice.choice_text}}</label><br>
   {% endfor %}
-  <input type="submit" class="btn btn-success btn-small" value="vote" />
+  <input type="submit" class="btn btn-outline-success btn-sm" value="vote" />
 </form>
   <!-- <ul>
     {% for choice in question.choice_set.all %}
@@ -18,8 +18,8 @@
     {% endfor %}
   </ul> -->
 <br>
-  <a href="{% url 'add_options' question.id %}" class="btn btn-outline-success">Add options to this poll</a>
-  <br>
-  <a href="{% url 'polls_results' question.id %}" class="btn btn-outline-success">View the Results</a>
+  <a href="{% url 'add_options' question.id %}" class="btn btn-outline-primary btn-sm">Add options to this poll</a>
+  <br><br>
+  <a href="{% url 'polls_results' question.id %}" class="btn btn-outline-secondary btn-sm">View the Results</a>
 </div>
 {% endblock %}
