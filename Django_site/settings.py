@@ -27,7 +27,6 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -50,7 +49,7 @@ INSTALLED_APPS = [
 ]
 
 # -*- coding: utf-8 -*-
-ELASTICSEARCH_DSL={ 
+ELASTICSEARCH_DSL={
     'default':{
         'hosts':'localhost:9200'
     },

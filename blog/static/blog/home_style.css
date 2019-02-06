@@ -5,24 +5,17 @@ body{
   position: relative;
 }
 
-@media only screen and (max-width:768px) {
+/* @media only screen and (max-width:768px) {
   .events .box, .notice .right-box{
     margin:20px;
     padding: 0;
     width: auto;
   }
- /* .centered .slider{
-    width: auto;
-  } */
-  /* .slide .row .image{
-    width: auto;
-    margin-left:0;
-  } */
 }
 
 @media (max-width:576px){
   body{
-     padding-top:120px; /*fixed navbar overlay the below content in mobile */
+     padding-top:120px; /*fixed navbar overlay the below content in mobile
   }
 }
 @media (max-width:600px) {
@@ -32,7 +25,7 @@ body{
   .slide .row .events{
     position:static;
   }
-}
+}*/
 @media (min-width:1600px) {
   .notice{
     position: fixed;
@@ -44,7 +37,13 @@ body{
     width: 100%;
   }
   .slide .row .image {
-    margin-left: 16%;
+    margin-left: 7%;
+  }
+  .menu_now{
+    margin-left:150px;
+  }
+  .temporary_menu{
+    position: fixed;
   }
 
 }
@@ -80,7 +79,7 @@ body{
     margin-bottom: 20%;
     margin-left: 10%;
     padding: 2px;
-  }
+   }
   .temporary_menu li{
     padding: 5px;
     margin: 5px;
@@ -112,79 +111,7 @@ body{
   margin-right: 20%;
   margin-top: 35%;
   padding: 10px;
-
 }
-
-
-.centered{
-  /* border: 1px solid red; */
-}
-
-
-.tab-panels{
-  margin-top: 20px;
-  border: 2px solid #eee;
-  border-radius: 5px;
-  /* background-color: #eee; */
-}
-
-/* .tab-panels ul{
-  background-color: #ccc;
-} */
-
-
-.tab-panels .tabs li{
-  margin: 10px;
-  display: inline-block;
-  text-align: center;
-  cursor: pointer;
-  font-weight:500;
-}
-
-.tab-panels .tabs li:hover{
-  color: #777;
-}
-
-.tab-panels .panel{
-  display: none;
-  /* background: #ccc; */
-   padding: 20px;/*can change naramro dekhiyema*/
-  /*border-radius: 0 0 10px 10px;tyo border matra ho*/
-}
-
-.tab-panels .panel .active{
-  /* display: block; */
-  color: red;
-}
-
-/*For slider container*/
-.slider{
-  width:1000px;
-  /* height: 560px; */ /*here if uncommented small gap which can be used to write index*/
-  overflow: hidden;
-  border: 5px solid #343a40;
-  /* position: absolute; for classboard
-  top:10%; */
-}
-
-
-.slider .slides{
-  display:block;
-  width:6000px;
-  /* height: 533px; */
-  margin: 0;
-  padding: 0;
-}
-
-.slides .slide{
-  margin-top:auto;
-  text-align: center;
-  float: left;
-  list-style-type: none;
-  width: 1000px;/*w:800*533*/
-  height: auto;
-}
-
 
 .avatar{
   border: 2px solid black;
@@ -205,39 +132,6 @@ body{
 .news-feed{
   /* border:1px solid black; */
   height: auto;
-
-}
-
-.stories_photo li{
-  display: inline;
-}
-
-.add:hover{
-  color: #bbb;
-  cursor: pointer;
-}
-.remove:hover{
-  color: #bbb;
-  cursor: pointer;
-}
-
-/*for chat*/
-.bottoms{
-  position: fixed;
-  bottom: 0;
-  right: 30px;
-  width: auto;
-}
-
-/* .collapse{
-  display: none;
-  /* border:1px solid green;
-  height: 400px;
-  position: relative;
-} */
-
-.bUTTON{
-  width: 290px;
 }
 
 .feed_shade{
