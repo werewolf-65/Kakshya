@@ -49,10 +49,16 @@
           {% endfor %}
         </td>
         <td>
+          {% if request.user.is_authenticated %}
           <form action="{% url 'star_project' %}" method="post">
             {% csrf_token %}
-            <button type="submit" name="post_id" value="{{ project.id }}" class="fa fa-star btn" onclick="this.style.color='yellow'"></button>
+            {% if is_starred %}
+            <button type="submit" name="project_id" value="{{ project.id }}" class="btn fa fa-star"></button>
+            {% else %}
+            <button type="submit" name="project_id" value="{{ project.id }}" class="btn fa fa-star"></button>
+            {% endif %}
             </form>
+          {% endif %}
         </td>
         </tr>
         {% endfor %}

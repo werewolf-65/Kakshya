@@ -1,50 +1,340 @@
 
 {% extends 'blog/base.html' %}
-
+{% load static %}
 {% block content %}
-<div class="container">
-    {% for post in posts %}
-    <!-- <img class="rounded-circle" src="{{post.author.profile.image.url}}"> -->
-    <a href="{% url 'post-detail' post.id %}" ><h5>{{post.title}}</h5></a>
-    <p>By <a href="{% url 'user-posts' post.author.username %}" >{{post.author}}</a> on {{post.date_posted|date:"F d, Y"}}</p>
-    <p>{{post.content}}</p>
-    {% if post.img %}
-    <a href="{% url 'post-detail' post.id %}" >
-    <img src="{{ post.img.url }}" alt="{{ post.img.url }}"  style="width:400px;">
-    </a>
-    {% else %}
-    {% endif %}
-    <hr width="50%" style="margin-left:0px;">
-    <!-- <form action="{% url 'upvote_post' %}" method="post">
-      {% csrf_token %}
-      {% if is_upvoted %}
-      <button type="submit" name="post_id" value="{{ post.id }}" class="btn btn-success btn-small">Upvoted</button>
-      {% else %}
-      <button type="submit" name="post_id" value="{{ post.id }}" class="btn btn-outline-success btn-small">Upvote</button>
-      {% endif %}
-      </form> -->
-    <a href="{% url 'post-detail' post.id %}" name="upvote" class="btn btn-primary btn-small" style="color:white;">Put Your Views</a>
-    <!-- <a href="{% url 'post-detail' post.id %}" name="comment" class="btn btn-primary btn-small" style="color:white;">Comment</a> -->
-    <!-- <a href="{% url 'post-detail' post.id %}" name="upvote-comment" class="btn btn-success btn-small" style="color:white;">Click to upvote/comment</a> -->
+<link rel="stylesheet" type="text/css" href="{% static 'blog/home_style.css' %}">
 
-    <hr width="50%" style="margin-left:0px;">
-    {% endfor %}
-      {% if posts.has_previous %}
-        <a class="btn btn-outline-dark mb-4" href="?page=1">First</a>
-        <a class="btn btn-outline-dark mb-4" href="?page={{posts.previous_page_number }}">Previous</a>
-      {% endif %}
+<!--slide-->
+<div class="slide" style="">
+  <div class="row">
 
-      {% for num in posts.paginator.page_range %}
-        {% if posts.number == num %}
-          <a class="btn btn-dark mb-4" href="?page={{num}}">{{num}}</a>
-        {% elif num > posts.number|add:'-3' and num < posts.number|add:'3' %}
-        <a class="btn btn-outline-dark mb-4" href="?page={{num}}">{{num}}</a>
-        {% endif %}
-      {% endfor %}
+    <div class="events col-md-2" >
+      <div class="box card bg-light" style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+        <h2 class="text-center card " style="display:inline">Events <span class="far fa-calendar-check"></span></h2>
+          <div class="eve container" >
+            <div class="events_only">
+              <ul class="event 1">
+                <a href="#"><li class="eventProg">FlashMob</li>
+                <li class="eventDay">@4pm</li></a>
+              </ul>
 
-      {% if posts.has_next %}
-        <a class="btn btn-outline-dark mb-4" href="?page={{ posts.next_page_number }}">Next</a>
-        <a class="btn btn-outline-dark mb-4" href="?page={{posts.paginator.num_pages}}">Last</a>
-      {% endif %}
+              <ul class="event 2">
+                <a href="#"><li class="eventProg">FlashMob</li>
+                <li class="eventDay">@4pm</li></a>
+              </ul>
+            </div>
+
+
+            <button type="" name="" class="event_addbtn btn btn-outline-secondary mb-2"><span class="far fa-plus-square">Add</span></button>
+            <form class="events_form" style="display:none">
+              <input type="text" name="" value="" class="event_text form-control mb-2" placeholder="Event Name">
+              <input type="text" class="event_time form-control mb-2" placeholder="Event Time">
+              <button type="button" name="" class="event_donebtn btn btn-outline-secondary">Done</button>
+            </form>
+          </div>
+      </div>
+      <div class="birthdays card bg-light" style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+        <h2 class="text-center card" style="display:inline">Birthdays <span class="fa fa-birthday-cake"></span></h2>
+        <div class="birthday_panel">
+          <ul class="list container" style="background-color:#ffff">
+            <li class="photo"><img class="avatar" src="black.png" alt=""></li>
+            <li class="name">2</li>
+          </ul>
+          <ul class="list container " style="background-color:#ffff">
+            <li class="photo"><img class="avatar" src="black.png" alt=""></li>
+            <li class="name">2</li>
+          </ul>
+
+        </div>
+
+        <button type="" name="" class="birthday_addbtn btn btn-outline-secondary mb-2"><span class="far fa-plus-square">A day more older</span></button>
+        <div class="birthday_form" style="display:none">
+          <input type="text" name="" value="" class="birthday_text form-control mb-2" placeholder="Birthday Student">
+          <input type="text" class="birthday_date form-control mb-2" placeholder="birthdate">
+          <button type="submit" name="" class="birthday_donebtn btn btn-outline-secondary ">Done</button>
+        </div>
+        <!-- <a href="add_events"><span class="far fa-plus-square" style="margin-left:70%;">Add</span></a> -->
+
+        <!-- <div class="day card">
+          <img class="avatar" src="black.png" alt="abc" width="auto">
+          <p class="birthdate">3rd Jan</p>
+        </div> -->
+
+
+
+
+
+        <!-- <div class="day card">
+        <img class="avatar" src="black.png" alt="abc" width="auto">
+        <p class="birthdate">3rd Jan</p>
+      </div> -->
+
+    </div>
+
+    <div class="temporary_menu card bg-light " style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+      <h2 class="text-center">Menu</h2>
+      <ul style="padding:0">
+        <a href="{% url 'post-create' %}"><li><i class="fa fa-pen"></i> Create a Post</li></a>
+        <a href="{% url 'polls_create' %}"><li><i class="fa fa-poll"></i> Create a Poll</li></a>
+        <!-- <a href="#"><li><i class="fa fa-newspaper"></i> Post a journal</li></a>
+        <a href="#"><li><i class="fa fa-question"></i> Ask a question</li></a> -->
+        <a href="{% url 'upload_book' %}"><li><i class="fas fa-book-reader"></i> Upload a Book</li></a>
+        <a href="{% url 'upload_project' %}"><li><i class="fas fa-tools"></i> Upload a Project</li></a>
+
+      </ul>
+    </div>
+
+    </div>
+    <div class="image col-md-8 ">
+
+      <!-- <div class="centered container shadow-lg p-3 mb-5 bg-white rounded" >
+
+        <br>
+        <div class="slider container mb-4">
+          <! <div class="col-sm-12"> //its already removed
+          <ul class="slides">
+            <li class="slide"><img class="img-fluid" src="4.JPG" width="800px" height="533px"></li><!// have to make responsive
+            <li class="slide"><img class="img-fluid" src="6.JPG" width="800px" height="533px"></li>
+            <li class="slide"><img class="img-fluid" src="otter3.jpg"></li>
+            <li class="slide"><img class="img-fluid" src="otter4.jpg"></li>
+            <li class="slide"><img class="img-fluid" src="otter5.jpg"></li>
+          </ul>
+        </div>
+      </div> -->
+    </div>
+    <div class="notice col-md-2">
+      <div class="right-box card bg-light mb-3" style="  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+        <h2 class="text-center card" style="display:inline">Notices<span class="fas fa-bullhorn"></span></h2>
+        <marquee scrolldelay="100" direction="up" >
+          <center class="marks">
+            <a href="#" target="_blank">Sailesh's birthday Magh12</a><br>
+            <a href="#" target="_blank">FlashMob</a><br>
+            <a href="#" target="_blank">Hack-a-week</a><br>
+            <a href="#" target="_blank">Codecamp</a><br>
+            <a href="#" target="_blank">Energy-Hackathon</a><br>
+            <a href="#" target="_blank">Codejam</a><br>
+            <a href="#" target="_blank">Circuit Fabrication</a><br>
+            <a href="#" target="_blank">Notice1</a><br>
+        </center>
+        </marquee>
+        <button class="add_notice btn btn-secondary mb-2">Add notice</button>
+        <div class="add_input" style="display:none">
+          <input type="text" name="" value="" id="notice_input" class="form-control mb-2">
+          <button type="submit" name="button" class="add_button btn btn-secondary">Add</button>
+        </div>
+      </div>
+
+
+
+    </div>
+  </div>
+
 </div>
-{% endblock content %}
+
+
+
+<!-- main content -->
+<div class="section container"><hr>
+    <div class="row">
+      <div class="col-sm-3">
+        <!-- <div class="project container card bg-light" style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+          <h3 class="text-center">Projects<span class="fa fa-projects"></span></h3>
+            <ul style="padding:0">
+              <li>xyz started project IOT <a href="project.html">See more</a></li>
+              <li>xyz started project IOT <a href="project.html">See more</a></li>
+              <div class="text-right mr-3"><a href="projects.html">See all..</a></div>
+            </ul>
+        </div>
+        <hr>
+        <div class="library container card bg-light" style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+          <h3 class="text-center">Library</h3>
+            <ul class="container">
+              <li><a href="#">Digital(online)</a></li>
+              <li><a href="library.html">Class Library</a></li>
+            </ul>
+
+
+
+
+
+        </div> -->
+
+      </div>
+      <div class="feed col-sm-6">
+        <div class="news-feed">
+          <h2 class="text-center ">News Feed</h2>
+          <div class="tab-panels" style="background-color:#FBFFFB">
+            <ul class="tabs" style="background-color:#b1abae14"><!--#f8f9fa for light color-->
+              <li rel="panel1" class="active"><h5>Post</h5></li>
+              <li rel="panel2"><h5>Article</h5></li>
+              <li rel="panel3"><h5>Poll</h5></li>
+              <li rel="panel4"><h5>Ask a question</h5></li>
+              <li rel="panel5"><h5>Journal</h5></li>
+            </ul>
+            <div id="panel1" class="panel active">
+              <div class="boxx container"><!--duita box xa-->
+                <form class="forms" action="forms.html" method="post">
+                  <h2>Post to the feed</h2>
+                  <textarea class="text-area" name="texts" rows="8" cols="80" placeholder="Feel free to share."></textarea><br>
+                  <button class="btn btn-success" name="button">Post</button>
+
+                </form><br>
+                <span>Upload image:</span>
+                <form class="upload" action="post.html" method="post">
+                    <input type="file" name="pic">
+                    <input type="submit" class="btn btn-success">
+                </form>
+              </div>
+            </div>
+
+
+            <div id="panel2" class="panel">
+              <div class="article">
+                <h2 >Post an article:</h2>
+                <ul class="article_ul">
+                  <!-- <li><img class="rounded-circle" src="board.jpg" alt="" width="50px"></li> -->
+
+                    <form class="" action="index.html" method="post" >
+                      <li>Title<input type="text" placeholder="Title for your article" class="form-control"></li><br>
+                      <li>Article</li>
+                      <li>
+                        <input type="file" name="" value="" ><button class="btn btn-success" type="button">Upload</button>
+                      </li>
+                    </form>
+
+                </ul>
+              </div>
+            </div>
+
+            <div id="panel3" class="panel">
+              <h2>Create a poll on:</h2>
+              <ul>
+                <li>Topic: </li>
+                <textarea rows="3" cols="44"></textarea>
+                <div>
+                   Add option:
+                   <div class="form-group">
+               					<form name="add_name" id="add_name">
+               						<div class="table-responsive">
+               							<table class="table table-bordered" id="dynamic_field">
+               								<tr>
+               									<td><input type="text" name="name[]" placeholder="Enter option" class="form-control name_list" /></td>
+               									<td><button type="button" name="add" id="add" class="btn btn-info">Add More</button></td>
+               								</tr>
+               							</table>
+               							<input type="button" name="submit" id="submit" class="btn btn-success" value="Submit" />
+               						</div>
+               					</form>
+                   </div>
+
+                </div>
+              </ul>
+            </div>
+
+            <div id="panel4" class="panel">
+              <div class="question">
+                <h2>Question</h2>
+                <textarea name="texts question" rows="8" cols="80" placeholder="The question is"></textarea><br>
+                <button class="btn btn-success" type="submit" name="button" >Submit</button>
+              </div>
+            </div>
+
+            <div id="panel5" class="panel">
+              <div class="journal">
+                <h2>Post a journal</h2>
+                <textarea name="texts question" rows="8" cols="80" placeholder="the topic is"></textarea><br>
+                <button class="btn btn-success" type="submit" name="button">Submit</button>
+              </div>
+            </div>
+        </div>
+      </div>
+  <!--just the tab panels from tab-panel_widget-->
+        <!-- <div class="container"> -->
+
+
+       <!-- </div> -->
+       <div class="feed">
+           {% for post in posts %}
+           <div class="stories container mb-2" >
+           <div class="feed_shade s1 card container mt-2 mb-3">
+           <a href="{% url 'post-detail' post.id %}" ><h5>{{post.title}}</h5></a>
+           <p>By <a href="{% url 'user-posts' post.author.username %}" >{{post.author}}
+           <span><img class="rounded-circle" src="{{post.author.profile.image.url}}" width="50px" style="border-radius:50%;"></span>
+           </a> on {{post.date_posted|date:"F d, Y"}}</p>
+
+
+           <p>{{post.content}}</p>
+
+           {% if post.img %}
+           <a href="{% url 'post-detail' post.id %}" >
+           <img src="{{ post.img.url }}" alt="{{ post.img.url }}"  style="width:400px;">
+           </a>
+           {% else %}
+           {% endif %}
+           <hr width="50%" style="margin-left:0px;">
+           <a href="{% url 'post-detail' post.id %}" name="upvote" class="btn btn-primary btn-small" style="color:white;">Put Your Views</a>
+
+           <hr width="50%" style="margin-left:0px;">
+       </div>
+     </div>
+         {% endfor %}
+           {% if posts.has_previous %}
+             <a class="btn btn-outline-dark mb-4" href="?page=1">First</a>
+             <a class="btn btn-outline-dark mb-4" href="?page={{posts.previous_page_number }}">Previous</a>
+           {% endif %}
+
+           {% for num in posts.paginator.page_range %}
+             {% if posts.number == num %}
+               <a class="btn btn-dark mb-4" href="?page={{num}}">{{num}}</a>
+             {% elif num > posts.number|add:'-3' and num < posts.number|add:'3' %}
+             <a class="btn btn-outline-dark mb-4" href="?page={{num}}">{{num}}</a>
+             {% endif %}
+           {% endfor %}
+
+           {% if posts.has_next %}
+             <a class="btn btn-outline-dark mb-4" href="?page={{ posts.next_page_number }}">Next</a>
+             <a class="btn btn-outline-dark mb-4" href="?page={{posts.paginator.num_pages}}">Last</a>
+           {% endif %}
+
+     {% endblock content %}
+
+       </div>
+    </div><!--col-sm-6-->
+
+
+
+
+
+      <div class="col-sm-3">
+        <!-- <div class="journal container card bg-light " style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+          <h3 class="text-center">Journal</h3>
+            <blockquote class="blockquote ">
+              <div class="journal1 container card" >
+                <p>Hey i dont have petty much concept about it</p>
+                <footer class="blockquote-footer">MR Jackson</footer>
+              </div>
+              <br>
+              <div class="journal2 container card">
+                <p>It's not what happens to you,but how you react to it that matters</p>
+                <footer class="blockquote-footer">Epictetus</footer>
+              </div>
+
+              <a href="#"><span class="fas fa-plus" style="margin-left:30%"> Add your view</span></a>
+            </blockquote>
+        </div> -->
+        <!-- <hr> -->
+        <!-- <div class="links container card" style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+          <h3 class="text-center">Important Links</h3>
+          <ul>
+            <li><a href="https://pcampus.edu.np">Pcampus</a></li>
+            <li><a href="https://exam.ioe.edu.np">IOE_Exam</a></li>
+            <li><a href="https://ioe.edu.np">IOE</a></li>
+          </ul>
+        </div> -->
+      </div>
+    </div>
+
+
+
+
+    </div><!--section container-->

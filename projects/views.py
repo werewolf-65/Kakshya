@@ -20,7 +20,7 @@ def upload_project(request):
     return render(request,'projects/upload_project.html',{'form':form})
 
 def star_project(request):
-    pk=request.POST.get('post_id')
+    pk=request.POST.get('project_id')
     project=get_object_or_404(Project,id=pk)
     is_starred=False
     if project.stars.filter(id=request.user.id).exists():

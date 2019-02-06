@@ -26,3 +26,6 @@ def upload_book(request):
     else:
         form=BookForm()
     return render(request,'library/upload_book.html',{'form':form})
+
+def class_library(request):
+    return render(request,'library/library_prototype.html')

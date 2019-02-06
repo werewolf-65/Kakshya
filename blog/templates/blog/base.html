@@ -10,7 +10,11 @@
    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
    <link rel="stylesheet" href="{% static 'blog/style.css' %}">
    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-
+   <style>
+     html{
+       overflow-x: hidden;
+     }
+   </style>
 
       {% if title %}
       <title>Kakshya-{{title}}</title>
@@ -28,35 +32,32 @@
     <div class="collapse navbar-collapse" id="navbarCollapse">
       <ul class="navbar-nav ml-auto">
         <li class="nav-item active">
-          <a class="nav-link" href="{% url 'blog-home' %}">Home <span class="sr-only">(current)</span></a>
+          <a class="nav-link" href="{% url 'blog-home' %}"><i class="fa fa-fw fa-home"></i>Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="{% url 'gallery' %}">Gallery</a>
+          <a class="nav-link" href="{% url 'gallery' %}"><i class="fa fa-fw fa-camera"></i>Gallery</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="https://github.com/TeamKakshya" target="_blank" rel="noopener noreferrer">Github</a>
+          <a class="nav-link" href="{% url 'book_list' %}"><i class="fas fa-book-reader"></i>Library</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="{% url 'book_list' %}">Library</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="{% url 'project_list' %}">Projects</a>
+          <a class="nav-link" href="{% url 'project_list' %}"><i class="fas fa-tools"></i>Projects</a>
         </li>
         {% if user.is_authenticated %}
         <li class="nav-item">
-          <a class="nav-link" href="{% url 'polls_index' %}">Polls</a>
+          <a class="nav-link" href="{% url 'polls_index' %}"><i class="fa fa-poll"></i>Polls</a>
         </li>
-        <li class="nav-item">
+        <!-- <li class="nav-item">
           <a class="nav-link" href="{% url 'post-create' %}">Create Post</a>
+        </li> -->
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'profile' %}"><i class="fa fa-fw fa-user"></i>Profile</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="{% url 'profile' %}">Profile</a>
+          <a class="nav-link" href="{% url 'index' %}"><i class="far fa-comment-alt"></i>Chat</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="{% url 'index' %}">Chat</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="{% url 'contact_list' %}">Contacts</a>
+          <a class="nav-link" href="{% url 'contact_list' %}"><i class="fa fa-fw fa-address-book"></i>Contacts</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="{% url 'logout' %}">Logout</a>
@@ -69,6 +70,9 @@
           <a class="nav-link" href="{% url 'register' %}">Register</a>
         </li>
         {% endif %}
+        <li class="nav-item">
+          <a class="nav-link" href="https://github.com/TeamKakshya" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i></a>
+        </li>
         <li class="nav-item">
           <a class="nav-link" href="{% url 'blog-about' %}">About</a>
         </li>
@@ -84,7 +88,7 @@
   </nav>
   <br><br><br><br>
   <div class="row">
-    <div class="col-md-8">
+    <div class="col-md-12">
   {% if messages %}
     {% for message in messages %}
       <div class="alert alert-{{message.tags}}">{{message}}</div>
@@ -93,8 +97,20 @@
     {% block content %}
     {% endblock %}
     </div>
+
+    <footer class="page-footer bg-light mt-2 col-sm-12">
+      <div class="footer-content">
+      <p class="text-center mt-2 mb-0">&copy; 2019 Copyright:<strong>Kakshya</strong></p>
+      <p class="text-center mb-1" >Created By:Kakshya Team</p>
+      </div>
+    </footer>
+
   </div>
+  <br>
+
+
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
   </body>
 </html>

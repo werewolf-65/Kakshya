@@ -44,6 +44,7 @@ urlpatterns = [
     path('library/library-upload/',library_views.upload,name="library-upload"),
     path('library/books/',library_views.book_list,name="book_list"),
     path('library/books/upload',library_views.upload_book,name="upload_book"),
+    path('library/class_library',library_views.class_library,name="class_library"),
     path('projects/',pro_views.project_list,name="project_list"),
     path('projects/upload',pro_views.upload_project,name="upload_project"),
     path('project/star',pro_views.star_project,name='star_project'),

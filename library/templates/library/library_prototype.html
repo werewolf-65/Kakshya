@@ -1,0 +1,226 @@
+{% extends 'blog/base.html' %}
+{% load static %}
+{% block content %}
+<style>
+.library{
+  margin-top: 50px;
+}
+
+.menu_side{
+  margin-top: 80px;
+}
+
+.btnclass{
+  width: 250px;
+  padding:  10px;
+  margin: 5px 10px;
+}
+.btnclass:hover{
+  cursor: pointer;
+}
+
+.in{
+  margin-top: 10px;
+}
+
+.imgbox{
+   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2)  0 400px 20px 0 rgba(0, 0, 0, 0.2);
+   border-radius:5px;
+}
+</style>
+
+<div class="library">
+    <h1 class="text-center">Class Library</h1>
+    <menu>
+        <div class="row">
+          <div class="menu_side col-md-2">
+
+            <button class="btnclass btn btn-success" onclick="call('all_books',this)" id="defaultclick">All Books</button>
+            <button class="btnclass btn btn-primary" onclick="call('status_books',this)">Status</button>
+            <button class="btnclass btn btn-info" onclick="call('my_bucket',this)">My Bucket</button>
+            <button class="btnclass btn btn-dark" onclick="call('search_books',this)">Search for books</button>
+            <button class="btnclass btn btn-secondary" onclick="call('add_books',this)">Add Books</button>
+          </div>
+          <div class="content_side col-md-9">
+
+            <div id="all_books" class="btndiv">
+              <h2>All Books</h2>
+              <table class="table table-bordered table-hover">
+                <tr>
+                  <th>S.N</th>
+                  <th>Name of books</th>
+                  <th>Status</th>
+                  <th>Author</th>
+                  <th>Action</th>
+                </tr>
+                <tr>
+
+                  <td>1</td>
+                  <td><a href="electromagnestim.html">Electromagnestism</a><br>
+                     <img src="{% static 'library/eem.jpeg' %}" alt="What's happening?" width="200px" class="imgbox" ></td>
+                  <td>Available</td>
+                  <td>HYAT</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>2</td>
+                  <td><a href="software.html">Software Engineering</a><br>
+                     <img src="{% static 'library/software.jpg' %}" alt="" width="200px" class="imgbox" ></td>
+                  <td>Booked</td>
+                  <td>Ronald J. Leach</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>2</td>
+                  <td><a href="chetanbhagat.html">The Girl In Room 105</a><br>
+                     <img src="{% static 'library/c++.jpg' %}" alt="" width="200px" class="imgbox" ></td>
+                  <td>Booked</td>
+                  <td>Chetan Bhagat</td>
+                  <td></td>
+                </tr>
+              </table>
+            </div>
+
+            <div id="status_books" class="btndiv">
+              <h2>Book Status</h2>
+              <h4>Available Books</h4>
+              <table class="table table-bordered table-hover">
+                <tr>
+                  <th>S.N</th>
+                  <th>Name of books</th>
+                  <th>Author</th>
+                </tr>
+                <tr>
+                  <td>1</td>
+                  <td><a href="python.html">Python</a><br>
+                     <img src="{% static 'library/python.jpg' %}" alt="" width="200px" class="imgbox"></td>
+                  <td>JKM</td>
+                </tr>
+                <tr>
+                  <td>2</td>
+                  <td><a href="django.html">Django</a><br>
+                     <img src="{% static 'library/django.jpg' %}" alt="" width="200px" class="imgbox"></td>
+                  <td>SSP</td>
+                </tr>
+              </table>
+              <h4>Unavailable Books</h4>
+              <table class="table table-bordered table-hover">
+                <tr>
+                  <th>S.N</th>
+                  <th>Name of books</th>
+                  <th>Author</th>
+                </tr>
+                <tr>
+                  <td>1</td>
+                  <td><a href="c++.html">C++</a><br>
+                     <img src="{% static 'library/c++.jpg' %}" alt="" width="200px" class="imgbox"></td>
+                  <td>JKM</td>
+                </tr>
+                <tr>
+                  <td>2</td>
+                  <td><a href="java.html">Java</a><br>
+                     <img src="{% static 'library/python.jpg' %}" alt="" width="200px" class="imgbox"></td>
+                  <td>SSP</td>
+                </tr>
+              </table>
+            </div>
+
+
+            <div id="my_bucket" class="btndiv">
+              <h2>My Books Transactions</h2>
+
+              <table class="table table-bordered table-hover">
+                <tr>
+                  <th>S.N</th>
+                  <th>Name of books</th>
+                  <th>Author</th>
+                  <th>Borrowed On</th>
+                  <th>Deadline</th>
+                  <th>Action</th>
+                </tr>
+                <tr>
+
+                  <td>1</td>
+                  <td><a href="electromagnestim.html">Electromagnetism</a><br>
+                     <img src="{% static 'library/eem.jpg' %}" alt="" width="200px" class="imgbox"></td>
+                  <td>JKM</td>
+                  <td>2074/10/12</td>
+                  <td>2074/10/26</td>
+                  <td>
+                    <div class="form-check">
+                      <input type="checkbox" name="" value="" class="return form-check-input">Return
+                    </div>
+                    <div class="form-check">
+                      <input type="checkbox" class="renew form-check-input">Renew
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>2</td>
+                  <td><a href="software.html">Software</a><br>
+                     <img src="{% static 'library/software.jpg' %}" alt="" width="200px" class="imgbox"></td>
+                  <td>SSP</td>
+                  <td>2074/01/01</td>
+                  <td>207/01/15</td>
+                  <td>
+                    <div class="form-check">
+                      <input type="checkbox" name="" value="" class="return form-check-input">Return
+                    </div>
+                    <div class="form-check">
+                      <input type="checkbox" class="renew form-check-input">Renew
+                    </div>
+                  </td>
+
+                </tr>
+              </table>
+            </div>
+
+            <div id="search_books" class="btndiv">
+              <h2>Search Books</h2>
+              <div class="in form-group">
+                <input type="text" name="" value="" placeholder="Type the name of book" class="form-control">
+              </div>
+              <div class="ser form-group">
+                <button class="btn btn-secondary" type="submit" name="button" >Search</button>
+              </div>
+            </div>
+
+            <div id="add_books" class="btndiv">
+              <h2>Add Book</h2>
+              <form class="form-inline mt-4" action="index.html" method="post">
+                <div class="form-group">
+                  <label for="title">Title:-</label>
+                  <input type="text" name="" value="" class="form-control">
+                </div>
+              </form>
+              <form class="form-inline mt-4" action="index.html" method="post">
+                <div class="form-group">
+                  <label for="author">Author:-</label>
+                  <input type="text" name="" value="" class="form-control">
+                </div>
+              </form>
+              <form class="form-inline mt-4" action="index.html" method="post">
+                <div class="form-group">
+                  <label for="cover_photo">Cover photo:-</label>
+                  <input type="file" name="" value="" class="form-control-file border">
+                  <label for="add_file">Add File:-</label>
+                  <input type="file" name="" value="" class="form-control-file border">
+                  <button class="btn btn-primary mt-2" type="submit" name="">Upload</button>
+                </div>
+              </form>
+            </div>
+
+            <div id="ask_books" class="btndiv">
+              <h2>Ask for books</h2>
+            </div>
+
+          </div>
+
+          <div class="col-md-1">
+
+          </div>
+        </div>
+
+    </menu>
+  </div>
+{% endblock %}
