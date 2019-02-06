@@ -80,20 +80,20 @@ body{
     margin-left: 10%;
     padding: 2px;
    }
-  .temporary_menu li{
+  .temporary_menu li, .events_only li{
     padding: 5px;
     margin: 5px;
   }
-  .temporary_menu li:hover{
+  .temporary_menu li:hover, .events_only li:hover{
     background-color:#343a40;
   }
 
-  .temporary_menu a{
+  .temporary_menu a, .events_only a{
     text-decoration: none;
     color:black;
   }
 
-  .temporary_menu a:hover{
+  .temporary_menu a:hover, .events_only a:hover{
     color:white;
   }
 
