@@ -37,6 +37,7 @@
           <ul class="list container" style="background-color:#ffff">
             {% for user in users %}
             <!-- <li><img src="{{ user.username }}" width="20px"></li> -->
+            <li><img src="{{ user.profile.image.url }}" width="40px"> </li>
             <li>{{ user.username|capfirst }}: </li>
             <li>{{user.profile.birthdate}}</li>
             <br>
