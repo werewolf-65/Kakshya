@@ -5,19 +5,23 @@
     <table class="table">
       <thead>
         <tr>
+          <td><b>Profile</b></td>
           <td><b>Username</b></td>
           <td><b>First Name</b></td>
           <td><b>Last Name</b></td>
           <td><b>Email</b></td>
+          <td><b>BirthDate</b></td>
         </tr>
       </thead>
       <tbody>
         {% for user in users %}
         <tr>
+          <td><img src="{{ user.profile.image.url }}" width="100px"></td>
           <td>{{ user.username }}</td>
           <td>{{ user.first_name }}</td>
           <td>{{ user.last_name }}</td>
           <td>{{ user.email }}</td>
+          <td>{{ user.profile.birthdate }}</td>
         </tr>
         {% endfor %}
       </tbody>
