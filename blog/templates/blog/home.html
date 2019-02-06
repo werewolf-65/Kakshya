@@ -11,12 +11,11 @@
     <div class="events col-md-2" >
       <div class="box card bg-light" style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
         <h2 class="text-center card " style="display:inline">Events <span class="far fa-calendar-check"></span></h2>
-          <div class="eve container" >
             <div class="events_only">
 
               <ul  style="list-style-type:square;padding:0">
                 {% for event in events %}
-                <a href="{% url 'event-list' %}"><li class="eventProg">{{event.title}}
+                <a href="{% url 'event-list' %}" style="text-decoration:none"><li class="eventProg">{{event.title}}
                 @{{event.event_date}}</li></a>
 
                 {% endfor %}
@@ -29,7 +28,6 @@
               <input type="text" class="event_time form-control mb-2" placeholder="Event Time">
               <button type="button" name="" class="event_donebtn btn btn-outline-secondary">Done</button>
             </form>
-          </div>
           </div>
       </div>
       <div class="birthdays card bg-light" style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
