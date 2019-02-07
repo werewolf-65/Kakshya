@@ -36,12 +36,14 @@
             <button type="submit" name="event_id" value="{{ event.id }}" class="btn btn-success btn-sm">Participate</button>
             </form>
         </td>
+        {% if event.author == user %}
         <td>
         <a href="{% url 'event-update' event.id %}" class="btn btn-info btn-sm">Update</a>
         </td>
         <td>
         <a href="{% url 'event-delete' event.id %}" class="btn btn-danger btn-sm">Delete</a>
         </td>
+        {% endif %}
         </tr>
         {% endfor %}
       </tbody>
