@@ -27,7 +27,7 @@ def upload_project(request):
             return redirect('project_list')
     else:
         form=ProjectForm()
-    return render(request,'projects/upload_project.html',{'form':form})
+    return render(request,'projects/project_form.html',{'form':form})
 
 @login_required
 def star_project(request):
