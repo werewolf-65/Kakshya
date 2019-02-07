@@ -120,6 +120,8 @@ def post_detail(request,pk):
         'comment_form':comment_form,
     }
     return render(request,'blog/post_detail.html',context)
+
+@login_required
 def upvote_post(request):
     pk=request.POST.get('post_id')
     post=get_object_or_404(Post,id=pk)
@@ -161,6 +163,7 @@ def event_list(request):
     }
     return render(request,'blog/events.html',context)
 
+@login_required
 def participate(request):
     pk=request.POST.get('event_id')
     event=get_object_or_404(Event,id=pk)

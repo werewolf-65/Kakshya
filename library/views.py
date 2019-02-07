@@ -1,8 +1,10 @@
 from django.shortcuts import render,redirect
 from django.core.files.storage import FileSystemStorage
+from django.contrib.auth.decorators import login_required
 from .forms import BookForm
 from .models import Book
 # Create your views here.
+@login_required
 def upload(request):
     context={}
     if(request.method=='POST'):
@@ -17,6 +19,7 @@ def book_list(request):
     books=Book.objects.all()
     return render(request,'library/book_list.html',{'books':books})
 
+@login_required
 def upload_book(request):
     if(request.method=="POST"):
         form=BookForm(request.POST,request.FILES)

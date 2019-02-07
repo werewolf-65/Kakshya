@@ -19,6 +19,7 @@ def project_list(request):
 
     return render(request,'projects/project_list.html',{'projects':projects})
 
+@login_required
 def upload_project(request):
     if(request.method=="POST"):
         form=ProjectForm(request.POST,request.FILES)

@@ -1,5 +1,6 @@
 from django.shortcuts import render,get_object_or_404,redirect
 from django.http import HttpResponse,HttpResponseRedirect
+from django.contrib.auth.decorators import login_required
 from .models import Question,Choice
 from .forms import QuestionForm,ChoiceForm
 from django.urls import reverse
@@ -25,6 +26,7 @@ def results(request,question_id):
     question=get_object_or_404(Question,pk=question_id)
     return render(request,"polls/polls_results.html",{'question':question})
 
+@login_required
 def vote(request,question_id):
     question=get_object_or_404(Question,pk=question_id)
     try:
@@ -37,6 +39,7 @@ def vote(request,question_id):
 
         return HttpResponseRedirect(reverse('polls_results',args=(question.id, )))
 
+@login_required
 def create_poll(request):
     if(request.method=="POST"):
         form=QuestionForm(request.POST)
@@ -46,6 +49,8 @@ def create_poll(request):
     else:
         form=QuestionForm()
     return render(request,'polls/polls_create.html',{'form':form})
+
+@login_required
 def add_options(request,question_id):
     if(request.method=="POST"):
         form=ChoiceForm(request.POST)
