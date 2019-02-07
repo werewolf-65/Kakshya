@@ -47,7 +47,7 @@
           <td>
           {% for starrer in project.stars.all %}
           <ul>
-            {{ starrer.username }}
+            <span class="fa fa-star" style="color:yellow;"></span>{{ starrer.username }}
           </ul>
           {% endfor %}
         </td>
