@@ -23,7 +23,7 @@
 
     {% if post.multimedia %}
     <a href="{{ post.multimedia.url }}" >
-    <video src="{{ post.multimedia.url }}" alt="{{ post.multimedia.url }}" controls></video>
+    <video src="{{ post.multimedia.url }}" style="max-width:600px;align-items:center" controls></video>
     </a>
     {% endif %}
 

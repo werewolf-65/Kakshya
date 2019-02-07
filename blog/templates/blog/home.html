@@ -53,7 +53,7 @@
          {% endif %}
          {% if post.multimedia %}
          <a href="{% url 'post-detail' post.id %}" >
-         <video src="{{ post.multimedia.url }}" alt="{{ post.multimedia.url }}" controls></video> 
+         <video src="{{ post.multimedia.url }}" alt="{{ post.multimedia.url }}" style="max-width:600px;align-items:center" controls></video> 
          </a>
          {% endif %}
          <hr width="50%" style="margin-left:0px;">
