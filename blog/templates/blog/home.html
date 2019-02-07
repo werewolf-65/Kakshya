@@ -48,8 +48,13 @@
          {% if post.img %}
          <a href="{% url 'post-detail' post.id %}" >
          <img src="{{ post.img.url }}" alt="{{ post.img.url }}"  style="max-width:600px;align-items:center" class="mx-auto d-block">
+         <!-- <video src="{{ post.img.url }}" alt="{{ post.img.url }}" controls></video> -->
          </a>
-         {% else %}
+         {% endif %}
+         {% if post.multimedia %}
+         <a href="{% url 'post-detail' post.id %}" >
+         <video src="{{ post.multimedia.url }}" alt="{{ post.multimedia.url }}" controls></video> 
+         </a>
          {% endif %}
          <hr width="50%" style="margin-left:0px;">
          <a href="{% url 'post-detail' post.id %}" name="upvote" ><button name="" class="btn btn-primary btn-small" style="color:white;">Put Your Views</button></a>

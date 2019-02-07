@@ -15,6 +15,11 @@
     <img src="{{ post.img.url }}" alt="{{ post.title }}"  style="width:600px;" class="mx-auto d-block">
     {% else %}
     {% endif %}
+    {% if post.multimedia %}
+    <a href="{% url 'post-detail' post.id %}" >
+    <video src="{{ post.multimedia.url }}" alt="{{ post.multimedia.url }}" controls></video>
+    </a>
+    {% endif %}
     <hr width="50%" style="margin-left:0px;">
     {% endfor %}
 

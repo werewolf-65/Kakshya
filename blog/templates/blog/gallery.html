@@ -3,14 +3,18 @@
 
 {% block content %}
 <div class="container " style="text-align:center">
-    <h2>Image Gallery</h2>
+    <h2>Media Gallery</h2>
         {% for post in posts %}
 
         {% if post.img %}
         <a href="{% url 'post-detail' post.id %}" >
           <img src="{{ post.img.url }}" alt="" class="img img-thumbnail" style="width:20%;">
         </a>
-        {% else %}
+        {% endif %}
+        {% if post.multimedia %}
+        <a href="{% url 'post-detail' post.id %}" >
+        <video src="{{ post.multimedia.url }}" alt="{{ post.multimedia.url }}" controls></video>
+        </a>
         {% endif %}
         <!-- <hr width="50%" style="margin-left:0px;"> -->
         {% endfor %}

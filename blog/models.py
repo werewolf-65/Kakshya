@@ -8,6 +8,7 @@ class Post(models.Model):
     content=models.TextField()
     upvotes=models.ManyToManyField(User,related_name="upvotes",blank=True)
     img=models.FileField(upload_to='gallery/',null=True,blank=True) #soon to be an image upload feature
+    multimedia=models.FileField(upload_to='gallery/',null=True,blank=True)
     date_posted=models.DateTimeField(default=timezone.now)
     author=models.ForeignKey(User,on_delete=models.CASCADE)
 
