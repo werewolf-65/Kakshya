@@ -18,11 +18,13 @@
           <td>{{ notice.title }}</td>
         <td>{{ notice.author }}</td>
         <td>
+          {% if notice.author == user %}
         <a href="{% url 'notice-update' notice.id %}" class="btn btn-info btn-sm">Update</a>
         </td>
         <td>
         <a href="{% url 'notice-delete' notice.id %}" class="btn btn-danger btn-sm">Delete</a>
         </td>
+        {% endif %}
         </tr>
         {% endfor %}
       </tbody>
