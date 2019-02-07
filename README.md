@@ -1,2 +1,2 @@
-# Kakshya
-Projects ko star button change gareko hora tmle sailesh?
+An information-oriented social network designed for student 
+organizations 
