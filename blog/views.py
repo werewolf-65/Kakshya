@@ -82,7 +82,7 @@ class PostDeleteView(LoginRequiredMixin,UserPassesTestMixin,DeleteView):
             return False
 def post_list(request):
     post_list=Post.objects.all()
-    paginator=Paginator(post_list,5)
+    paginator=Paginator(post_list,3)
     page=request.GET.get('page')
     posts=paginator.get_page(page)
     events=Event.objects.all()

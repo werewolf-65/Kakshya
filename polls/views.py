@@ -1,7 +1,7 @@
 from django.shortcuts import render,get_object_or_404,redirect
 from django.http import HttpResponse,HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
-from .models import Question,Choice
+from .models import Question,Choice,Voter
 from .forms import QuestionForm,ChoiceForm
 from django.urls import reverse
 # Create your views here.
@@ -28,16 +28,21 @@ def results(request,question_id):
 
 @login_required
 def vote(request,question_id):
-    question=get_object_or_404(Question,pk=question_id)
+    # voters = [user.id for user in Voter.objects.filter(question_id=question_id)]
+    q=get_object_or_404(Question,pk=question_id)
+    if Voter.objects.filter(question_id=question_id,user_id=request.user.id).exists():
+        return render(request,"polls/polls_details.html",{'question':q,"error_message":"You have already voted!"})
+
     try:
-        selected_choice=question.choice_set.get(pk=request.POST['choice'])
+        selected_choice=q.choice_set.get(pk=request.POST['choice'])
     except:
-        return render(request,"polls/polls_details.html",{'question':question,"error_message":"Please select a choice!"})
+        return render(request,"polls/polls_details.html",{'question':q,"error_message":"Please select a choice!"})
     else:
         selected_choice.votes +=1
         selected_choice.save()
-
-        return HttpResponseRedirect(reverse('polls_results',args=(question.id, )))
+        v = Voter(user=request.user, question=q)
+        v.save()
+        return HttpResponseRedirect(reverse('polls_results',args=(q.id, )))
 
 @login_required
 def create_poll(request):
