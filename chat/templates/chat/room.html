@@ -1,6 +1,6 @@
 
 {% load static %}
-
+{% load extratags%}
 <!DOCTYPE html>
 <html>
   <head>
@@ -40,7 +40,7 @@
     <div class="content">
       <div class="contact-profile">
         <img src="{% static 'default.png' %}" alt="" />
-        <p>{{ username }}</p>
+        <p>{{ username|title|strip_double_quotes }}</p>
       </div>
       <div class="messages">
         <ul id="chat-log">
